@@ -1,0 +1,40 @@
+'use strict';
+
+import idValidate from 'server/router/fn/idValidate';
+import userAuthenticationValidate from 'server/router/fn/userAuthenticationValidate';
+import userAuthorizationValidate from 'server/router/fn/userAuthorizationValidate';
+import entityDelete from 'server/router/user/fn/entityDelete';
+
+const validateFn = async (params, headers, database) => {
+  let entity;
+
+  try {
+    idValidate(params.id);
+  } finally {
+    // eslint-disable-next-line no-empty
+  }
+
+  try {
+    entity = await userAuthenticationValidate(headers.authorization, database);
+  } finally {
+    // eslint-disable-next-line no-empty
+  }
+
+  try {
+    await userAuthorizationValidate(params.id, entity.id);
+  } finally {
+    // eslint-disable-next-line no-empty
+  }
+};
+
+export default async (params, headers, database) => {
+  try {
+    await validateFn(params, headers, database);
+  } catch (error) {
+    return error;
+  }
+
+  const result = await entityDelete(params.id, database);
+
+  return result;
+};
