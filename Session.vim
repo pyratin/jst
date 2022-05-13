@@ -17,10 +17,6 @@ tabnew
 tabnew
 tabnew
 tabnew
-tabnew
-tabnew
-tabnew
-tabnew
 tabrewind
 edit package.json
 argglobal
@@ -94,52 +90,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 5 - ((0 * winheight(0) + 20) / 40)
+let s:l = 18 - ((17 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 5
+keepjumps 18
 normal! 037|
-tabnext
-edit source/client/Route/User/index.js
-argglobal
-balt source/client/Route/index.js
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 15 - ((14 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 15
-normal! 0
-tabnext
-edit test/client/Route/User/EntityAuthenticate/index.js
-argglobal
-balt source/client/Route/User/index.js
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 108 - ((35 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 108
-normal! 035|
 tabnext
 edit source/client/Route/User/EntityAuthenticate/index.js
 argglobal
@@ -154,12 +110,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 35 - ((32 * winheight(0) + 20) / 40)
+let s:l = 49 - ((39 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 35
-normal! 04|
+keepjumps 49
+normal! 016|
 tabnext
 edit source/client/Route/User/EntityCreate/index.js
 argglobal
@@ -174,30 +130,11 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 24 - ((23 * winheight(0) + 20) / 40)
+let s:l = 37 - ((36 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 24
-normal! 0
-tabnext
-edit test/client/Route/User/Component/AuhtorizationNavigation/index.js
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 60 - ((38 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 60
+keepjumps 37
 normal! 0
 tabnext
 edit source/client/Route/User/Component/AuthorizationNavigation/index.js
@@ -220,26 +157,6 @@ normal! zt
 keepjumps 52
 normal! 0
 tabnext
-edit test/client/Route/User/Component/AuthorizationForm/index.js
-argglobal
-balt source/client/Route/User/Component/AuthorizationNavigation/index.js
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 125 - ((8 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 125
-normal! 0
-tabnext
 edit source/client/Route/User/Component/AuthorizationForm/index.js
 argglobal
 balt source/client/Route/User/Component/AuthorizationForm/index.js
@@ -259,20 +176,18 @@ keepjumps exe s:l
 normal! zt
 keepjumps 88
 normal! 0
-tabnext 7
-badd +37 package.json
-badd +13 test/client/Component/Wrapper/index.js
+tabnext 6
+badd +72 package.json
 badd +26 source/client/store/index.js
 badd +12 source/client/index.js
 badd +3 source/client/Route/index.js
-badd +3 source/client/Route/User/index.js
+badd +15 source/client/Route/User/index.js
 badd +21 source/client/Route/User/EntityAuthenticate/index.js
-badd +13 source/client/Route/User/EntityCreate/index.js
+badd +14 source/client/Route/User/EntityCreate/index.js
 badd +23 source/client/Route/User/Component/AuthorizationNavigation/index.js
 badd +42 source/client/Route/User/Component/AuthorizationForm/index.js
-badd +156 test/client/Route/User/Component/AuthorizationForm/index.js
-badd +0 test/client/Route/User/Component/AuhtorizationNavigation/index.js
-badd +110 test/client/Route/User/EntityAuthenticate/index.js
+badd +15 source/client/store/action/user/entityCreate.js
+badd +8 source/client/store/reducer/index.js
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
