@@ -70,7 +70,10 @@ const AuthorizationForm = (props) => {
             onChange={onEmailChangeHandle}
           />
 
-          <div className='invalidFeedback invalid-feedback'></div>
+          <div
+            className='invalidFeedback invalid-feedback'
+            data-key-error='email'
+          ></div>
         </div>
 
         <div className='inputGroup mb-3'>
@@ -83,7 +86,10 @@ const AuthorizationForm = (props) => {
             onChange={onPasswordChangeHandle}
           />
 
-          <div className='invalidFeedback invalid-feedback'></div>
+          <div
+            className='invalidFeedback invalid-feedback'
+            data-key-error='password'
+          ></div>
         </div>
 
         <div className='btnGroup d-flex justify-content-end'>

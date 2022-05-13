@@ -7,81 +7,105 @@ import Wrapper from 'test/client/Component/Wrapper';
 import AuthorizationForm from 'client/Route/User/Component/AuthorizationForm';
 
 describe('AuthorizationForm', () => {
-  it('actionType: entityAuthenticate :: button[type=submit].text(Signin)', () => {
+  it('props.actionType: entityAuthenticate :: [type=submit].text', () => {
     mount(
       <Wrapper>
-        <AuthorizationForm
-          actionType='entityAuthenticate'
-          input={{}}
-          error={null}
-        />
+        <AuthorizationForm actionType='entityAuthenticate' input={{}} />
       </Wrapper>
     );
 
-    cy.get('button[type=submit]').should('have.text', 'Signin');
+    cy.get('[type=submit]').should('have.text', 'Signin');
   });
 
-  it('actionType: entityCreate :: button[type=submit].text(Signup)', () => {
+  it('props.actionType: entityCreate :: [type=submit].text', () => {
     mount(
       <Wrapper>
         <AuthorizationForm actionType='entityCreate' input={{}} />
       </Wrapper>
     );
 
-    cy.get('button[type=submit]').should('have.text', 'Signup');
+    cy.get('[type=submit]').should('have.text', 'Signup');
   });
 
-  it('button[type=submit].click() :: onSubmitHandle.calledOnceWith', () => {
+  it('props.input: { email } :: [data-key="email"].value', () => {
     const input = {
-      email: 'user01@test.com',
-      password: 'user01Test'
+      email: 'EMAIL',
+      password: ''
     };
 
-    const onSubmitHandle = cy.stub().as('onSubmitHandle');
-
     mount(
       <Wrapper>
-        <AuthorizationForm
-          actionType='entityAuthenticate'
-          input={input}
-          onSubmit={onSubmitHandle}
-        />
+        <AuthorizationForm input={input} />
       </Wrapper>
     );
 
-    cy.get('button[type=submit]').click();
-
-    cy.get('@onSubmitHandle').should('have.been.calledOnceWith', input);
+    cy.get('[data-key="email"]').should('have.value', input.email);
   });
 
-  it('input: { email: ... } :: input[data-key=email].value(...)', () => {
-    const email = 'user01@test.com';
+  it('props.input: { password } :: [data-key="password"].value', () => {
+    const input = {
+      email: '',
+      password: 'PASSWORD'
+    };
 
     mount(
       <Wrapper>
-        <AuthorizationForm actionType='entityAuthenticate' input={{ email }} />
+        <AuthorizationForm input={input} />
       </Wrapper>
     );
 
-    cy.get('input[data-key="email"]').should('have.value', email);
+    cy.get('[data-key="password"]').should('have.value', input.password);
   });
 
-  it('input: { password: ... } :: input[data-key=password].value(...)', () => {
-    const password = 'user01Test';
+  it('props.loading: false :: [type=submit] !> .LoadingInline', () => {
+    mount(
+      <Wrapper>
+        <AuthorizationForm input={{}} loading={false} />
+      </Wrapper>
+    );
+
+    cy.get('[type=submit]').should('not.have.descendants', '.LoadingInline');
+  });
+
+  it('props.loading: true :: [type=submit] > .LoadingInline', () => {
+    mount(
+      <Wrapper>
+        <AuthorizationForm input={{}} loading={true} />
+      </Wrapper>
+    );
+
+    cy.get('[type=submit]').should('have.descendants', '.LoadingInline');
+  });
+
+  it('[data-key="eamil"].type() :: [data-key="email"].value', () => {
+    const email = 'EMAIL';
 
     mount(
       <Wrapper>
-        <AuthorizationForm
-          actionType='entityAuthenticate'
-          input={{ password }}
-        />
+        <AuthorizationForm input={{}} />
       </Wrapper>
     );
 
-    cy.get('input[data-key="password"]').should('have.value', password);
+    cy.get('[data-key="email"]').type(email);
+
+    cy.get('[data-key="email"]').should('have.value', email);
   });
 
-  it('error: { email } :: input[data-key=email].is-invalid', () => {
+  it('[data-key="password"].type() :: [data-key="password"].value', () => {
+    const password = 'PASSWORD';
+
+    mount(
+      <Wrapper>
+        <AuthorizationForm input={{}} />
+      </Wrapper>
+    );
+
+    cy.get('[data-key="password"]').type(password);
+
+    cy.get('[data-key="password"]').should('have.value', password);
+  });
+
+  it('props.error: { email } :: [data-key="email"].is-invalid', () => {
     const error = {
       _error: [
         {
@@ -93,22 +117,19 @@ describe('AuthorizationForm', () => {
 
     mount(
       <Wrapper>
-        <AuthorizationForm
-          actionType='entityAuthenticate'
-          input={{}}
-          error={error}
-        />
+        <AuthorizationForm input={{}} error={error} />
       </Wrapper>
     );
 
-    cy.get('input[data-key="email"]')
-      .should('have.class', 'is-invalid')
-      .parents('.inputGroup')
-      .find('.invalidFeedback')
-      .should('have.text', error._error[0].message);
+    cy.get('[data-key="email"]').should('have.class', 'is-invalid');
+
+    cy.get('[data-key-error="email"]').should(
+      'have.text',
+      error._error[0].message
+    );
   });
 
-  it('error: { password } :: input[data-key=password].is-invalid', () => {
+  it('props.error: { password } :: [data-key="password"].is-invalid', () => {
     const error = {
       _error: [
         {
@@ -120,18 +141,34 @@ describe('AuthorizationForm', () => {
 
     mount(
       <Wrapper>
-        <AuthorizationForm
-          actionType='entityAuthenticate'
-          input={{}}
-          error={error}
-        />
+        <AuthorizationForm input={{}} error={error} />
       </Wrapper>
     );
 
-    cy.get('input[data-key="password"]')
-      .should('have.class', 'is-invalid')
-      .parents('.inputGroup')
-      .find('.invalidFeedback')
-      .should('have.text', error._error[0].message);
+    cy.get('[data-key="password"]').should('have.class', 'is-invalid');
+
+    cy.get('[data-key-error="password"]').should(
+      'have.text',
+      error._error[0].message
+    );
+  });
+
+  it('[type=submit].click() :: props.onSubmit.called', () => {
+    const input = {
+      email: 'user01@test.com',
+      password: 'PASSWORD'
+    };
+
+    const onSubmitHandle = cy.stub().as('onSubmitHandle');
+
+    mount(
+      <Wrapper>
+        <AuthorizationForm input={input} onSubmit={onSubmitHandle} />
+      </Wrapper>
+    );
+
+    cy.get('[type=submit]').click();
+
+    cy.get('@onSubmitHandle').should('have.been.calledWith', input);
   });
 });

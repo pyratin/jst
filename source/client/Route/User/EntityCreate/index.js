@@ -10,7 +10,7 @@ const EntityCreate = () => {
     return <AuthorizationNavigation />;
   };
 
-  const formRender = () => {
+  const authorizationFormRender = () => {
     return (
       <AuthorizationForm
         actionType='entityCreate'
@@ -26,7 +26,7 @@ const EntityCreate = () => {
     return (
       <div className='p-3 border'>
         {authorizationNavigationRender()}
-        {formRender()}
+        {authorizationFormRender()}
       </div>
     );
   };

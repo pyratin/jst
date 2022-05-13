@@ -20,10 +20,6 @@ const StoreProvider = ({ children }) => {
     return _action(_dispatch);
   }, []);
 
-  if (/** @type {any} */ (window).Cypress) {
-    /** @type {any} */ (window).store = store;
-  }
-
   return (
     <Store.Provider value={{ store, dispatch }}>{children}</Store.Provider>
   );

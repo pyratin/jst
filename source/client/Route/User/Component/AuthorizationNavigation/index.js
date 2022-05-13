@@ -41,7 +41,7 @@ const AuthorizationNavigation = () => {
       <li key={index} className='nav-item'>
         <a
           href='#'
-          className={`nav-link ${activeGet(item)}`}
+          className={`${item.text} nav-link ${activeGet(item)}`}
           onClick={onClickHandleFn(item)}
         >
           {item.text}

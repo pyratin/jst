@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { useContext, useState, useReducer } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Store } from 'client/store';
@@ -13,16 +13,12 @@ const EntityAuthenticate = () => {
 
   const navigate = useNavigate();
 
-  const [loading, loadingDispatch] = useReducer((state, action) => {
-    return action;
-  }, false);
-  console.log('LOADING', loading)
+  const [loading, loadingSet] = useState(false);
 
   const [error, errorSet] = useState();
 
   const entityAuthenticate = (input) => {
-    console.log('IN');
-    loadingDispatch(true);
+    loadingSet(true);
 
     errorSet(null);
 
@@ -31,11 +27,10 @@ const EntityAuthenticate = () => {
         return navigate('/');
       })
       .catch((error) => {
-        console.log('OUT');
         return errorSet(error);
       })
       .finally(() => {
-        return loadingDispatch(false);
+        return loadingSet(false);
       });
   };
 
