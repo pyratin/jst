@@ -7,6 +7,7 @@
     "development:server": "env NODE_ENV=development node_modules/nodemon/bin/nodemon.js -L --exec node_modules/@babel/node/bin/babel-node.js -w source/server -e js source/server",
     "development:client": "env NODE_ENV=development node_modules/@babel/node/bin/babel-node.js node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --mode development --config utility/webpack",
     "test:server": "env NODE_ENV=development node_modules/mocha/bin/mocha.js --require @babel/register --recursive test/server",
+    "test:server:watch": "env NODE_ENV=development node_modules/mocha/bin/mocha.js --require @babel/register --recursive test/server -- --watch",
     "test:client:open": "env NODE_ENV=development ./node_modules/cypress/bin/cypress open-ct --browser chromium",
     "test:client:run": "env NODE_ENV=development ./node_modules/cypress/bin/cypress run-ct"
   },
@@ -34,6 +35,7 @@
     "bootstrap": "^5.1.3",
     "css-loader": "^6.7.1",
     "cypress": "^9.6.1",
+    "encrypt-storage": "^2.2.10",
     "eslint": "^8.15.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-react": "^7.29.4",

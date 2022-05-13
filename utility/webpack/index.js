@@ -1,8 +1,11 @@
 'use strict';
 
+import dotenv from 'dotenv';
 import path from 'path';
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 module.exports = {
   entry: {
@@ -16,6 +19,11 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery'
+    }),
+    new webpack.DefinePlugin({
+      'globalThis.ENCRYPT_STORAGE_SECRET': JSON.stringify(
+        process.env.ENCRYPT_STORAGE_SECRET
+      )
     }),
     new MiniCssExtractPlugin()
   ],
@@ -63,6 +71,7 @@ module.exports = {
   resolve: {
     alias: {
       client: path.join(process.cwd(), 'source/client')
-    }
+    },
+    fallback: { crypto: false }
   }
 };

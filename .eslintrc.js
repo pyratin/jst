@@ -33,6 +33,7 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'no-console': 'error',
-    'react/prop-types': 0
+    'react/prop-types': 0,
+    '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }]
   }
 };

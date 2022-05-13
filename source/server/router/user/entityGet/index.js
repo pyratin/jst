@@ -3,7 +3,6 @@
 import idValidate from 'server/router/fn/idValidate';
 import userAuthenticationValidate from 'server/router/fn/userAuthenticationValidate';
 import userAuthorizationValidate from 'server/router/fn/userAuthorizationValidate';
-import entityDelete from 'server/router/user/fn/entityDelete';
 
 export const validateFn = async (params, headers, database) => {
   let entity;
@@ -21,20 +20,22 @@ export const validateFn = async (params, headers, database) => {
   }
 
   try {
-    await userAuthorizationValidate(params.id, entity.id);
+    userAuthorizationValidate(params.id, entity.id);
   } finally {
     // eslint-disable-next-line no-empty
   }
+
+  return { entity };
 };
 
 export default async (params, headers, database) => {
+  let entity;
+
   try {
-    await validateFn(params, headers, database);
+    ({ entity } = await validateFn(params, headers, database));
   } catch (error) {
     return error;
   }
 
-  const result = await entityDelete(params.id, database);
-
-  return result;
+  return entity;
 };
