@@ -8,9 +8,11 @@ import 'client/style/index.scss';
 
 const Wrapper = ({ children }) => {
   return (
-    <StoreProvider>
-      <BrowserRouter>{children}</BrowserRouter>
-    </StoreProvider>
+    <div id='Wrapper'>
+      <StoreProvider>
+        <BrowserRouter>{children}</BrowserRouter>
+      </StoreProvider>
+    </div>
   );
 };
 

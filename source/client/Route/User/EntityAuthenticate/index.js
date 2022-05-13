@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Store } from 'client/store';
@@ -13,12 +13,16 @@ const EntityAuthenticate = () => {
 
   const navigate = useNavigate();
 
-  const [loading, loadingSet] = useState(false);
+  const [loading, loadingDispatch] = useReducer((state, action) => {
+    return action;
+  }, false);
+  console.log('LOADING', loading)
 
   const [error, errorSet] = useState();
 
   const entityAuthenticate = (input) => {
-    loadingSet(true);
+    console.log('IN');
+    loadingDispatch(true);
 
     errorSet(null);
 
@@ -27,10 +31,11 @@ const EntityAuthenticate = () => {
         return navigate('/');
       })
       .catch((error) => {
+        console.log('OUT');
         return errorSet(error);
       })
       .finally(() => {
-        return loadingSet(false);
+        return loadingDispatch(false);
       });
   };
 
@@ -42,7 +47,7 @@ const EntityAuthenticate = () => {
     return <AuthorizationNavigation />;
   };
 
-  const formRender = () => {
+  const authorizationFormRender = () => {
     return (
       <AuthorizationForm
         actionType='entityAuthenticate'
@@ -50,6 +55,7 @@ const EntityAuthenticate = () => {
           email: '',
           password: ''
         }}
+        loading={loading}
         error={error}
         onSubmit={onSubmitHandle}
       />
@@ -60,7 +66,7 @@ const EntityAuthenticate = () => {
     return (
       <div className='p-3 border'>
         {authorizationNavigationRender()}
-        {formRender()}
+        {authorizationFormRender()}
       </div>
     );
   };

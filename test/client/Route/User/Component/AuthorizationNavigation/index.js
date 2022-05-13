@@ -44,7 +44,7 @@ describe('AuthorizationNavigation', () => {
 
     cy.location()
       .its('pathname')
-      .should('match', /^\/User\/Authenticate$/);
+      .should('eq', '/User/Authenticate');
   });
 
   it('a.text(Signup).click() :: location.pathname: /User/Create', () => {
@@ -60,6 +60,6 @@ describe('AuthorizationNavigation', () => {
 
     cy.location()
       .its('pathname')
-      .should('match', /^\/User\/Create$/);
+      .should('eq', '/User/Create');
   });
 });

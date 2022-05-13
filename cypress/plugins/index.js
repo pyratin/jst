@@ -25,10 +25,24 @@ module.exports = (on, config) => {
     const { startDevServer } = require('@cypress/webpack-dev-server');
 
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const webpackConfig = require('../../utility/webpack');
+    const webpackConfig = /** @type {any} */ (require('../../utility/webpack'));
 
     on('dev-server:start', (options) => {
-      return startDevServer({options, webpackConfig});
+      return startDevServer({
+        options,
+        webpackConfig: {
+          ...webpackConfig,
+          devServer: {
+            ...webpackConfig.devServer,
+            client: {
+              overlay: {
+                errors: true,
+                warnings: false
+              }
+            }
+          }
+        }
+      });
     });
   }
 };

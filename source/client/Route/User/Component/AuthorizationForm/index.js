@@ -5,6 +5,7 @@ import React, { useRef, useCallback, useEffect } from 'react';
 import useOnInputChange from 'client/Route/fn/useOnInputChange';
 import errorShow from 'client/Route/fn/errorShow';
 import errorClear from 'client/Route/fn/errorClear';
+import LoadingInline from 'client/Route/Component/LoadingInline';
 
 const AuthorizationForm = (props) => {
   const ref = useRef();
@@ -45,6 +46,17 @@ const AuthorizationForm = (props) => {
     });
   };
 
+  const loadingInlineRender = () => {
+    return (
+      props.loading && (
+        <>
+          <LoadingInline />
+          &nbsp;
+        </>
+      )
+    );
+  };
+
   const _renderFn = () => {
     return (
       <form ref={ref} onSubmit={onSubmitHandle}>
@@ -75,7 +87,8 @@ const AuthorizationForm = (props) => {
         </div>
 
         <div className='btnGroup d-flex justify-content-end'>
-          <button type='submit' className='btn btn-outline-primary'>
+          <button type='submit' className='d-flex btn btn-outline-primary'>
+            {loadingInlineRender()}
             {textGet()}
           </button>
         </div>

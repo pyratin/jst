@@ -31,24 +31,27 @@ describe('AuthorizationForm', () => {
     cy.get('button[type=submit]').should('have.text', 'Signup');
   });
 
-  it('button[type=submit].click() :: onSubmitHandle.called', () => {
-    const onSubmitHandle = cy.stub();
+  it('button[type=submit].click() :: onSubmitHandle.calledOnceWith', () => {
+    const input = {
+      email: 'user01@test.com',
+      password: 'user01Test'
+    };
+
+    const onSubmitHandle = cy.stub().as('onSubmitHandle');
 
     mount(
       <Wrapper>
         <AuthorizationForm
           actionType='entityAuthenticate'
-          input={{}}
+          input={input}
           onSubmit={onSubmitHandle}
         />
       </Wrapper>
     );
 
-    cy.get('button[type=submit]')
-      .click()
-      .then(() => {
-        expect(onSubmitHandle).to.be.called;
-      });
+    cy.get('button[type=submit]').click();
+
+    cy.get('@onSubmitHandle').should('have.been.calledOnceWith', input);
   });
 
   it('input: { email: ... } :: input[data-key=email].value(...)', () => {
