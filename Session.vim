@@ -17,6 +17,10 @@ tabnew
 tabnew
 tabnew
 tabnew
+tabnew
+tabnew
+tabnew
+tabnew
 tabrewind
 edit package.json
 argglobal
@@ -36,6 +40,46 @@ keepjumps exe s:l
 normal! zt
 keepjumps 72
 normal! 06|
+tabnext
+edit test/client/Route/User/Component/AuthorizationForm/index.js
+argglobal
+balt test/client/Route/User/Component/AuthorizationForm/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 174 - ((39 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 174
+normal! 0
+tabnext
+edit test/client/Route/User/Component/AuhtorizationNavigation/index.js
+argglobal
+balt test/client/Route/User/Component/AuhtorizationNavigation/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 61 - ((39 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 61
+normal! 0
 tabnext
 edit source/client/store/index.js
 argglobal
@@ -97,6 +141,26 @@ normal! zt
 keepjumps 18
 normal! 037|
 tabnext
+edit test/client/Route/User/EntityAuthenticate/index.js
+argglobal
+balt source/client/Route/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 112 - ((39 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 112
+normal! 03|
+tabnext
 edit source/client/Route/User/EntityAuthenticate/index.js
 argglobal
 balt source/client/Route/User/EntityAuthenticate/index.js
@@ -110,16 +174,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 49 - ((39 * winheight(0) + 20) / 40)
+let s:l = 53 - ((39 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 49
+keepjumps 53
 normal! 016|
 tabnext
-edit source/client/Route/User/EntityCreate/index.js
+edit test/client/Route/User/EntityCreate/index.js
 argglobal
-balt source/client/Route/User/EntityAuthenticate/index.js
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -130,11 +193,30 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 37 - ((36 * winheight(0) + 20) / 40)
+let s:l = 93 - ((39 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 37
+keepjumps 93
+normal! 03|
+tabnext
+edit source/client/Route/User/EntityCreate/index.js
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 45 - ((21 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 45
 normal! 0
 tabnext
 edit source/client/Route/User/Component/AuthorizationNavigation/index.js
@@ -176,18 +258,19 @@ keepjumps exe s:l
 normal! zt
 keepjumps 88
 normal! 0
-tabnext 6
+tabnext 9
 badd +72 package.json
 badd +26 source/client/store/index.js
 badd +12 source/client/index.js
 badd +3 source/client/Route/index.js
-badd +15 source/client/Route/User/index.js
 badd +21 source/client/Route/User/EntityAuthenticate/index.js
-badd +14 source/client/Route/User/EntityCreate/index.js
+badd +43 source/client/Route/User/EntityCreate/index.js
 badd +23 source/client/Route/User/Component/AuthorizationNavigation/index.js
 badd +42 source/client/Route/User/Component/AuthorizationForm/index.js
-badd +15 source/client/store/action/user/entityCreate.js
-badd +8 source/client/store/reducer/index.js
+badd +81 test/client/Route/User/EntityCreate/index.js
+badd +0 test/client/Route/User/EntityAuthenticate/index.js
+badd +0 test/client/Route/User/Component/AuhtorizationNavigation/index.js
+badd +0 test/client/Route/User/Component/AuthorizationForm/index.js
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif

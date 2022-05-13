@@ -4,19 +4,19 @@ import React from 'react';
 import { mount } from '@cypress/react';
 
 import Wrapper from 'test/client/Component/Wrapper';
-import EntityAuthenticate from 'client/Route/User/EntityAuthenticate';
+import EntityCreate from 'client/Route/User/EntityCreate';
 
-describe('EntityAuthenticate', () => {
-  it('entityAuthenticate: !complete :: [type=submit] > .LoadingInline', () => {
-    cy.intercept('POST', '/user/authenticate', {
+describe('EntityCreate', () => {
+  it('entityCreate: !complete :: [type=submit] > .LoadingInline', () => {
+    cy.intercept('POST', '/user', {
       statusCode: 200,
       body: {},
       delay: 100
-    }).as('entityAuthenticate');
+    }).as('entityCreate');
 
     mount(
       <Wrapper>
-        <EntityAuthenticate />
+        <EntityCreate />
       </Wrapper>
     );
 
@@ -24,29 +24,29 @@ describe('EntityAuthenticate', () => {
 
     cy.get('[type=submit]').should('have.descendants', '.LoadingInline');
 
-    cy.wait('@entityAuthenticate');
+    cy.wait('@entityCreate');
   });
 
-  it('entityAuthenticate: complete :: [type=submit] !> .LoadingInline', () => {
-    cy.intercept('POST', '/user/authenticate', {
+  it('entityCreate: complete :: [type=submit] !> .LoadingInline', () => {
+    cy.intercept('POST', '/user', {
       statusCode: 200,
       body: {}
-    }).as('entityAuthenticate');
+    }).as('entityCreate');
 
     mount(
       <Wrapper>
-        <EntityAuthenticate />
+        <EntityCreate />
       </Wrapper>
     );
 
     cy.get('[type=submit]').click();
 
-    cy.wait('@entityAuthenticate');
+    cy.wait('@entityCreate');
 
     cy.get('[type=submit]').should('not.have.descendants', '.LoadingInline');
   });
 
-  it('entityAuthenticate: error :: [data-key="..."].is-invalid', () => {
+  it('entityCreate: error :: [data-key="..."].is-invalid', () => {
     const error = {
       _error: [
         {
@@ -61,20 +61,20 @@ describe('EntityAuthenticate', () => {
       status: 400
     };
 
-    cy.intercept('POST', '/user/authenticate', {
+    cy.intercept('POST', '/user', {
       statusCode: error.status,
       body: error
-    }).as('entityAuthenticate');
+    }).as('entityCreate');
 
     mount(
       <Wrapper>
-        <EntityAuthenticate />
+        <EntityCreate />
       </Wrapper>
     );
 
     cy.get('[type=submit]').click();
 
-    cy.wait('@entityAuthenticate');
+    cy.wait('@entityCreate');
 
     cy.get('[data-key="email"]').should('have.class', 'is-invalid');
 
@@ -91,21 +91,21 @@ describe('EntityAuthenticate', () => {
     );
   });
 
-  it('entityAuthenticate: success :: location.pathname: /', () => {
-    cy.intercept('POST', '/user/authenticate', {
+  it('entityCreate: success :: location.pathname: /', () => {
+    cy.intercept('POST', '/user', {
       statusCode: 200,
       body: {}
-    }).as('entityAuthenticate');
+    }).as('entityCreate');
 
     mount(
       <Wrapper>
-        <EntityAuthenticate />
+        <EntityCreate />
       </Wrapper>
     );
 
     cy.get('[type=submit]').click();
 
-    cy.wait('@entityAuthenticate');
+    cy.wait('@entityCreate');
 
     cy.location().its('pathname').should('eq', '/');
   });
