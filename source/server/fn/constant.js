@@ -6,7 +6,7 @@ export default {
   },
   JSONWEBTOKEN: {
     EXPIRES_IN: {
-      ACCESS: '1h',
+      ACCESS: 300,
       REFRESH: '1d'
     }
   }

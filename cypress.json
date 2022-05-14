@@ -1,5 +1,6 @@
 {
   "component": {
-    "componentFolder": "test/client/Route"
+    "componentFolder": "test/client/Route",
+    "ignoreTestFiles": "**/fn/*.js"
   }
 }

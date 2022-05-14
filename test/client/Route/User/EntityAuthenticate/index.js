@@ -1,10 +1,6 @@
 'use strict';
 
-import React from 'react';
-import { mount } from '@cypress/react';
-
-import Wrapper from 'test/client/Component/Wrapper';
-import EntityAuthenticate from 'client/Route/User/EntityAuthenticate';
+import entityAuthenticate from 'test/client/Route/User/fn/entityAuthenticate';
 
 describe('EntityAuthenticate', () => {
   it('entityAuthenticate: !complete :: [type=submit] > .LoadingInline', () => {
@@ -14,13 +10,10 @@ describe('EntityAuthenticate', () => {
       delay: 100
     }).as('entityAuthenticate');
 
-    mount(
-      <Wrapper>
-        <EntityAuthenticate />
-      </Wrapper>
-    );
-
-    cy.get('[type=submit]').click();
+    entityAuthenticate({
+      email: '{backspace}',
+      password: '{backspace}'
+    });
 
     cy.get('[type=submit]').should('have.descendants', '.LoadingInline');
 
@@ -33,13 +26,10 @@ describe('EntityAuthenticate', () => {
       body: {}
     }).as('entityAuthenticate');
 
-    mount(
-      <Wrapper>
-        <EntityAuthenticate />
-      </Wrapper>
-    );
-
-    cy.get('[type=submit]').click();
+    entityAuthenticate({
+      email: '{backspace}',
+      password: '{backspace}'
+    });
 
     cy.wait('@entityAuthenticate');
 
@@ -66,13 +56,10 @@ describe('EntityAuthenticate', () => {
       body: error
     }).as('entityAuthenticate');
 
-    mount(
-      <Wrapper>
-        <EntityAuthenticate />
-      </Wrapper>
-    );
-
-    cy.get('[type=submit]').click();
+    entityAuthenticate({
+      email: '{backspace}',
+      password: '{backspace}'
+    });
 
     cy.wait('@entityAuthenticate');
 
@@ -97,13 +84,10 @@ describe('EntityAuthenticate', () => {
       body: {}
     }).as('entityAuthenticate');
 
-    mount(
-      <Wrapper>
-        <EntityAuthenticate />
-      </Wrapper>
-    );
-
-    cy.get('[type=submit]').click();
+    entityAuthenticate({
+      email: '{backspace}',
+      password: '{backspace}'
+    });
 
     cy.wait('@entityAuthenticate');
 

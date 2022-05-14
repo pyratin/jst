@@ -63,8 +63,9 @@ const AuthorizationForm = (props) => {
         <div className='inputGroup mb-3'>
           <input
             type='email'
-            className='formControl form-control'
             placeholder='email'
+            autoComplete='email'
+            className='formControl form-control'
             data-key='email'
             value={email}
             onChange={onEmailChangeHandle}
@@ -79,8 +80,9 @@ const AuthorizationForm = (props) => {
         <div className='inputGroup mb-3'>
           <input
             type='password'
-            className='formControl form-control'
             placeholder='password'
+            autoComplete='current-password'
+            className='formControl form-control'
             data-key='password'
             value={password}
             onChange={onPasswordChangeHandle}

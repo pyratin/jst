@@ -18,6 +18,9 @@ const Route = () => {
       case !store.user.authorization.id &&
         !location.pathname.match(/^\/User\/(Authenticate|Create)$/):
         return navigate('/User/Authenticate');
+
+      case !!store.user.authorization.id && !!location.pathname.match(/^\/$/):
+        return navigate(`/User/${store.user.authorization.id}`);
     }
   }, [store.user.authorization.id, location.pathname, navigate]);
 

@@ -10,6 +10,7 @@ import _Route from './Route';
 import User from './Route/User';
 import UserAuthenticate from './Route/User/EntityAuthenticate';
 import UserCreate from './Route/User/EntityCreate';
+import UserDetail from './Route/User/EntityDetail';
 
 createRoot(document.getElementById('viewer')).render(
   <StoreProvider>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('viewer')).render(
           <Route path='User' element={<User />}>
             <Route path='Authenticate' element={<UserAuthenticate />} />
             <Route path='Create' element={<UserCreate />} />
+            <Route path=':id' element={<UserDetail />} />
           </Route>
         </Route>
       </Routes>

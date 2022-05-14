@@ -19,6 +19,7 @@ tabnew
 tabnew
 tabnew
 tabnew
+tabnew
 tabrewind
 edit package.json
 argglobal
@@ -32,12 +33,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 10 - ((9 * winheight(0) + 20) / 41)
+let s:l = 71 - ((34 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 10
-normal! 0143|
+keepjumps 71
+normal! 025|
 tabnext
 edit source/client/store/index.js
 argglobal
@@ -52,16 +53,125 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 46 - ((40 * winheight(0) + 20) / 41)
+let s:l = 56 - ((26 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 46
-normal! 032|
+keepjumps 56
+normal! 020|
 tabnext
-edit source/client/store/reducer/index.js
+edit source/client/Route/index.js
 argglobal
-balt source/client/store/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 14 - ((13 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 14
+normal! 033|
+tabnext
+edit test/client/Route/User/fn/entityCreate.js
+argglobal
+balt source/client/Route/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 24 - ((23 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 24
+normal! 014|
+tabnext
+edit test/client/Route/User/fn/entityAuthenticate.js
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 24 - ((23 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 24
+normal! 039|
+tabnext
+edit test/client/Route/User/EntityDetail/index.js
+argglobal
+balt source/client/Route/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 23 - ((19 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 23
+normal! 028|
+tabnext
+edit source/client/Route/User/EntityDetail/index.js
+argglobal
+balt source/client/Route/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 18 - ((17 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 18
+normal! 029|
+tabnext
+edit source/client/style/index.scss
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -79,9 +189,9 @@ normal! zt
 keepjumps 1
 normal! 0
 tabnext
-edit source/client/index.js
+edit test/client/Route/User/fn/entityDelete.js
 argglobal
-balt package.json
+balt test/client/Route/User/fn/entityDelete.js
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -92,156 +202,61 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 12 - ((11 * winheight(0) + 20) / 40)
+let s:l = 20 - ((19 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 12
-normal! 050|
-tabnext
-edit source/client/Route/index.js
-argglobal
-balt source/client/index.js
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 18 - ((17 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 18
-normal! 037|
-tabnext
-edit test/client/Route/User/EntityAuthenticate/index.js
-argglobal
-balt source/client/Route/index.js
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 112 - ((39 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 112
-normal! 03|
-tabnext
-edit source/client/Route/User/EntityAuthenticate/index.js
-argglobal
-balt source/client/Route/User/EntityAuthenticate/index.js
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 53 - ((39 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 53
-normal! 016|
-tabnext
-edit source/client/Route/User/EntityCreate/index.js
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 45 - ((21 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 45
-normal! 0
-tabnext
-edit source/client/Route/User/Component/AuthorizationNavigation/index.js
-argglobal
-balt source/client/Route/User/EntityAuthenticate/index.js
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 52 - ((21 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 52
-normal! 0
-tabnext
-edit source/client/Route/User/Component/AuthorizationForm/index.js
-argglobal
-balt source/client/Route/User/Component/AuthorizationForm/index.js
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 69 - ((15 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 69
+keepjumps 20
 normal! 025|
-tabnext 2
-badd +72 package.json
-badd +28 source/client/store/index.js
-badd +12 source/client/index.js
-badd +3 source/client/Route/index.js
-badd +21 source/client/Route/User/EntityAuthenticate/index.js
-badd +43 source/client/Route/User/EntityCreate/index.js
-badd +23 source/client/Route/User/Component/AuthorizationNavigation/index.js
-badd +42 source/client/Route/User/Component/AuthorizationForm/index.js
-badd +112 test/client/Route/User/EntityCreate/index.js
-badd +0 test/client/Route/User/EntityAuthenticate/index.js
-badd +61 test/client/Route/User/Component/AuhtorizationNavigation/index.js
-badd +174 test/client/Route/User/Component/AuthorizationForm/index.js
-badd +4 .env.development
-badd +77 utility/webpack/index.js
-badd +7 source/server/index.js
-badd +0 source/client/store/reducer/index.js
-badd +9 source/server/router/user/index.js
-badd +9 source/server/router/user/entityGet/index.js
-badd +40 source/server/router/user/entityDelete/index.js
-badd +60 test/server/router/user/entityDelete/index.js
-badd +91 test/server/router/user/entityDelete/data.js
-badd +107 test/server/router/user/entityGet/index.js
-badd +78 test/server/router/user/entityGet/data.js
-badd +37 .eslintrc.js
+tabnext
+edit test/client/Route/User/fn/entityCreate.js
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 11 - ((10 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 11
+normal! 0
+tabnext
+edit test/client/Route/User/fn/entityAuthenticate.js
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 9 - ((8 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 9
+normal! 01|
+tabnext 11
+badd +71 package.json
+badd +57 source/client/store/index.js
+badd +16 source/client/Route/index.js
+badd +19 test/client/Route/User/EntityDetail/index.js
+badd +25 source/client/Route/User/EntityDetail/index.js
+badd +1 source/client/style/index.scss
+badd +30 .eslintrc.js
+badd +10 test/client/Route/User/fn/entityCreate.js
+badd +9 test/client/Route/User/fn/entityAuthenticate.js
+badd +3 test/client/Route/User/fn/entityDelete.js
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif

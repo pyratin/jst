@@ -1,10 +1,6 @@
 'use strict';
 
-import React from 'react';
-import { mount } from '@cypress/react';
-
-import Wrapper from 'test/client/Component/Wrapper';
-import EntityCreate from 'client/Route/User/EntityCreate';
+import entityCreate from 'test/client/Route/User/fn/entityCreate';
 
 describe('EntityCreate', () => {
   it('entityCreate: !complete :: [type=submit] > .LoadingInline', () => {
@@ -14,13 +10,10 @@ describe('EntityCreate', () => {
       delay: 100
     }).as('entityCreate');
 
-    mount(
-      <Wrapper>
-        <EntityCreate />
-      </Wrapper>
-    );
-
-    cy.get('[type=submit]').click();
+    entityCreate({
+      email: '{backspace}',
+      password: '{backspace}'
+    });
 
     cy.get('[type=submit]').should('have.descendants', '.LoadingInline');
 
@@ -33,13 +26,10 @@ describe('EntityCreate', () => {
       body: {}
     }).as('entityCreate');
 
-    mount(
-      <Wrapper>
-        <EntityCreate />
-      </Wrapper>
-    );
-
-    cy.get('[type=submit]').click();
+    entityCreate({
+      email: '{backspace}',
+      password: '{backspace}'
+    });
 
     cy.wait('@entityCreate');
 
@@ -66,13 +56,10 @@ describe('EntityCreate', () => {
       body: error
     }).as('entityCreate');
 
-    mount(
-      <Wrapper>
-        <EntityCreate />
-      </Wrapper>
-    );
-
-    cy.get('[type=submit]').click();
+    entityCreate({
+      email: '{backspace}',
+      password: '{backspace}'
+    });
 
     cy.wait('@entityCreate');
 
@@ -97,13 +84,10 @@ describe('EntityCreate', () => {
       body: {}
     }).as('entityCreate');
 
-    mount(
-      <Wrapper>
-        <EntityCreate />
-      </Wrapper>
-    );
-
-    cy.get('[type=submit]').click();
+    entityCreate({
+      email: '{backspace}',
+      password: '{backspace}'
+    });
 
     cy.wait('@entityCreate');
 
