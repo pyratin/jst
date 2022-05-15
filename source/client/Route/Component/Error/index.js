@@ -48,7 +48,7 @@ const Error = (props) => {
     );
   };
 
-  return <div>{renderFn()}</div>;
+  return <div className='Error'>{renderFn()}</div>;
 };
 
 export default Error;

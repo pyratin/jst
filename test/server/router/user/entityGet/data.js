@@ -55,20 +55,20 @@ export default {
           }
         },
         {
-          text: 'authorization: failed',
+          text: 'entity: not found',
           argument: {
             params: {
-              id: '54445781-6a76-4a5d-a37b-42a81f0d8b29'
+              id: '251c77d4-1a18-4594-833f-efc240504d41'
             }
           },
           error: {
             _error: [
               {
-                source: 'authorization',
-                message: 'failed'
+                source: 'entity',
+                message: 'not found'
               }
             ],
-            status: 403
+            status: 404
           }
         }
       ]

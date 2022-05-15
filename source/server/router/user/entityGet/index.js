@@ -2,7 +2,7 @@
 
 import idValidate from 'server/router/fn/idValidate';
 import userAuthenticationValidate from 'server/router/fn/userAuthenticationValidate';
-import userAuthorizationValidate from 'server/router/fn/userAuthorizationValidate';
+import entityExistsValidate from 'server/router/user/fn/entityExistsValidate';
 
 export const validateFn = async (params, headers, database) => {
   let entity;
@@ -14,13 +14,13 @@ export const validateFn = async (params, headers, database) => {
   }
 
   try {
-    entity = await userAuthenticationValidate(headers.authorization, database);
+    await userAuthenticationValidate(headers.authorization, database);
   } finally {
     // eslint-disable-next-line no-empty
   }
 
   try {
-    userAuthorizationValidate(params.id, entity.id);
+    entity = await entityExistsValidate(params.id, database);
   } finally {
     // eslint-disable-next-line no-empty
   }

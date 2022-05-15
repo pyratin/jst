@@ -4,31 +4,23 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { mount } from '@cypress/react';
 
-import entityCreate from 'test/client/Route/User/fn/entityCreate';
-import entityDelete from 'test/client/Route/User/fn/entityDelete';
 import Wrapper from 'test/client/Component/Wrapper';
 import EntityDetail from 'client/Route/User/EntityDetail';
 
 describe('EntityDetail', () => {
-  const entity01 = {
-    email: 'user01@test.com',
-    password: 'user01Test'
-  };
+  it('@entityGet: !complete :: .EntityDetail > .Loading', () => {
+    const entity = {
+      id: '51db483b-ea2f-47a2-a797-49e1d773606e',
+      email: 'EMAIL'
+    };
 
-  before(() => {
-    return entityCreate(entity01, true);
-  });
+    cy.intercept('GET', `/user/${entity.id}`, {
+      statusCode: 200,
+      body: entity,
+      delay: 100
+    }).as('entityGet');
 
-  after(() => {
-    return entityDelete(true);
-  });
-
-  it('PLACEHOLDER', () => {
-    history.pushState(
-      null,
-      null,
-      `/User/${window['store'].user.authorization.id}`
-    );
+    history.pushState(null, null, `/User/${entity.id}`);
 
     mount(
       <Wrapper>
@@ -38,6 +30,102 @@ describe('EntityDetail', () => {
       </Wrapper>
     );
 
-    cy.get('.header > .email').should('have.text', entity01.email);
+    cy.get('.EntityDetail').should('have.descendants', '.Loading');
+
+    cy.wait('@entityGet');
+  });
+
+  it('@entityGet: complete :: .EntityDetail !> .Loading', () => {
+    const entity = {
+      id: '51db483b-ea2f-47a2-a797-49e1d773606e',
+      email: 'EMAIL'
+    };
+
+    cy.intercept('GET', `/user/${entity.id}`, {
+      statusCode: 200,
+      body: entity
+    }).as('entityGet');
+
+    history.pushState(null, null, `/User/${entity.id}`);
+
+    mount(
+      <Wrapper>
+        <Routes>
+          <Route path='/user/:id' element={<EntityDetail />} />
+        </Routes>
+      </Wrapper>
+    );
+
+    cy.wait('@entityGet');
+
+    cy.get('.EntityDetail').should('not.have.descendants', '.Loading');
+  });
+
+  it('@entityGet: error :: .EntityDetail > .Error', () => {
+    const entity = {
+      id: '51db483b-ea2f-47a2-a797-49e1d773606e',
+      email: 'EMAIL'
+    };
+
+    const error = {
+      _error: [
+        {
+          source: 'ERROR-SOURCE',
+          message: 'ERROR-MESSAGE'
+        }
+      ],
+      status: 400
+    };
+
+    cy.intercept('GET', `/user/${entity.id}`, {
+      statusCode: error.status,
+      body: error
+    }).as('entityGet');
+
+    history.pushState(null, null, `/User/${entity.id}`);
+
+    mount(
+      <Wrapper>
+        <Routes>
+          <Route path='/user/:id' element={<EntityDetail />} />
+        </Routes>
+      </Wrapper>
+    );
+
+    cy.wait('@entityGet');
+
+    cy.get('.EntityDetail').should('have.descendants', '.Error');
+
+    cy.get('.Error').should('contain', error._error[0].source);
+
+    cy.get('.Error').should('contain', error._error[0].message);
+  });
+
+  it('@entityGet: success :: .Entity > .success', () => {
+    const entity = {
+      id: '51db483b-ea2f-47a2-a797-49e1d773606e',
+      email: 'EMAIL'
+    };
+
+    cy.intercept('GET', `/user/${entity.id}`, {
+      statusCode: 200,
+      body: entity
+    }).as('entityGet');
+
+    history.pushState(null, null, `/User/${entity.id}`);
+
+    mount(
+      <Wrapper>
+        <Routes>
+          <Route path='/user/:id' element={<EntityDetail />} />
+        </Routes>
+      </Wrapper>
+    );
+
+    cy.wait('@entityGet');
+
+    cy.get('.EntityDetail').should('have.descendants', '.success');
+
+    cy.get('.success .Header').should('contain', entity.email);
   });
 });

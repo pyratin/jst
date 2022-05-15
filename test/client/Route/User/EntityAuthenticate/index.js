@@ -1,42 +1,70 @@
 'use strict';
 
-import entityAuthenticate from 'test/client/Route/User/fn/entityAuthenticate';
+import React from 'react';
+import { mount } from '@cypress/react';
+
+import Wrapper from 'test/client/Component/Wrapper';
+import EntityAuthenticate from 'client/Route/User/EntityAuthenticate';
 
 describe('EntityAuthenticate', () => {
-  it('entityAuthenticate: !complete :: [type=submit] > .LoadingInline', () => {
+  it('@entityAuthenticate: !complete :: [type=submit] > .LoadingInline', () => {
     cy.intercept('POST', '/user/authenticate', {
       statusCode: 200,
       body: {},
       delay: 100
     }).as('entityAuthenticate');
 
-    entityAuthenticate({
+    const input = {
       email: '{backspace}',
       password: '{backspace}'
-    });
+    };
+
+    mount(
+      <Wrapper>
+        <EntityAuthenticate />
+      </Wrapper>
+    );
+
+    cy.get('[data-key="email"]').type(input.email);
+
+    cy.get('[data-key="password"]').type(input.password);
+
+    cy.get('[type=submit]').click();
 
     cy.get('[type=submit]').should('have.descendants', '.LoadingInline');
 
     cy.wait('@entityAuthenticate');
   });
 
-  it('entityAuthenticate: complete :: [type=submit] !> .LoadingInline', () => {
+  it('@entityAuthenticate: complete :: [type=submit] !> .LoadingInline', () => {
     cy.intercept('POST', '/user/authenticate', {
       statusCode: 200,
       body: {}
     }).as('entityAuthenticate');
 
-    entityAuthenticate({
+    const input = {
       email: '{backspace}',
       password: '{backspace}'
-    });
+    };
+
+    mount(
+      <Wrapper>
+        <EntityAuthenticate />
+      </Wrapper>
+    );
+
+    cy.get('[data-key="email"]').type(input.email);
+
+    cy.get('[data-key="password"]').type(input.password);
+
+    cy.get('[type=submit]').click();
 
     cy.wait('@entityAuthenticate');
 
     cy.get('[type=submit]').should('not.have.descendants', '.LoadingInline');
   });
 
-  it('entityAuthenticate: error :: [data-key="..."].is-invalid', () => {
+  it('@entityAuthenticate: error :: [data-key="..."].is-invalid', () => {
     const error = {
       _error: [
         {
@@ -56,10 +84,22 @@ describe('EntityAuthenticate', () => {
       body: error
     }).as('entityAuthenticate');
 
-    entityAuthenticate({
+    const input = {
       email: '{backspace}',
       password: '{backspace}'
-    });
+    };
+
+    mount(
+      <Wrapper>
+        <EntityAuthenticate />
+      </Wrapper>
+    );
+
+    cy.get('[data-key="email"]').type(input.email);
+
+    cy.get('[data-key="password"]').type(input.password);
+
+    cy.get('[type=submit]').click();
 
     cy.wait('@entityAuthenticate');
 
@@ -78,16 +118,28 @@ describe('EntityAuthenticate', () => {
     );
   });
 
-  it('entityAuthenticate: success :: location.pathname: /', () => {
+  it('@entityAuthenticate: success :: location.pathname: /', () => {
     cy.intercept('POST', '/user/authenticate', {
       statusCode: 200,
       body: {}
     }).as('entityAuthenticate');
 
-    entityAuthenticate({
+    const input = {
       email: '{backspace}',
       password: '{backspace}'
-    });
+    };
+
+    mount(
+      <Wrapper>
+        <EntityAuthenticate />
+      </Wrapper>
+    );
+
+    cy.get('[data-key="email"]').type(input.email);
+
+    cy.get('[data-key="password"]').type(input.password);
+
+    cy.get('[type=submit]').click();
 
     cy.wait('@entityAuthenticate');
 

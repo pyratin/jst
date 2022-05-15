@@ -1,42 +1,70 @@
 'use strict';
 
-import entityCreate from 'test/client/Route/User/fn/entityCreate';
+import React from 'react';
+import { mount } from '@cypress/react';
+
+import Wrapper from 'test/client/Component/Wrapper';
+import EntityCreate from 'client/Route/User/EntityCreate';
 
 describe('EntityCreate', () => {
-  it('entityCreate: !complete :: [type=submit] > .LoadingInline', () => {
+  it('@entityCreate: !complete :: [type=submit] > .LoadingInline', () => {
     cy.intercept('POST', '/user', {
       statusCode: 200,
       body: {},
       delay: 100
     }).as('entityCreate');
 
-    entityCreate({
+    const input = {
       email: '{backspace}',
       password: '{backspace}'
-    });
+    };
+
+    mount(
+      <Wrapper>
+        <EntityCreate />
+      </Wrapper>
+    );
+
+    cy.get('[data-key="email"]').type(input.email);
+
+    cy.get('[data-key="password"]').type(input.password);
+
+    cy.get('[type=submit]').click();
 
     cy.get('[type=submit]').should('have.descendants', '.LoadingInline');
 
     cy.wait('@entityCreate');
   });
 
-  it('entityCreate: complete :: [type=submit] !> .LoadingInline', () => {
+  it('@entityCreate: complete :: [type=submit] !> .LoadingInline', () => {
     cy.intercept('POST', '/user', {
       statusCode: 200,
       body: {}
     }).as('entityCreate');
 
-    entityCreate({
+    const input = {
       email: '{backspace}',
       password: '{backspace}'
-    });
+    };
+
+    mount(
+      <Wrapper>
+        <EntityCreate />
+      </Wrapper>
+    );
+
+    cy.get('[data-key="email"]').type(input.email);
+
+    cy.get('[data-key="password"]').type(input.password);
+
+    cy.get('[type=submit]').click();
 
     cy.wait('@entityCreate');
 
     cy.get('[type=submit]').should('not.have.descendants', '.LoadingInline');
   });
 
-  it('entityCreate: error :: [data-key="..."].is-invalid', () => {
+  it('@entityCreate: error :: [data-key="..."].is-invalid', () => {
     const error = {
       _error: [
         {
@@ -56,10 +84,22 @@ describe('EntityCreate', () => {
       body: error
     }).as('entityCreate');
 
-    entityCreate({
+    const input = {
       email: '{backspace}',
       password: '{backspace}'
-    });
+    };
+
+    mount(
+      <Wrapper>
+        <EntityCreate />
+      </Wrapper>
+    );
+
+    cy.get('[data-key="email"]').type(input.email);
+
+    cy.get('[data-key="password"]').type(input.password);
+
+    cy.get('[type=submit]').click();
 
     cy.wait('@entityCreate');
 
@@ -78,16 +118,28 @@ describe('EntityCreate', () => {
     );
   });
 
-  it('entityCreate: success :: location.pathname: /', () => {
+  it('@entityCreate: success :: location.pathname: /', () => {
     cy.intercept('POST', '/user', {
       statusCode: 200,
       body: {}
     }).as('entityCreate');
 
-    entityCreate({
+    const input = {
       email: '{backspace}',
       password: '{backspace}'
-    });
+    };
+
+    mount(
+      <Wrapper>
+        <EntityCreate />
+      </Wrapper>
+    );
+
+    cy.get('[data-key="email"]').type(input.email);
+
+    cy.get('[data-key="password"]').type(input.password);
+
+    cy.get('[type=submit]').click();
 
     cy.wait('@entityCreate');
 

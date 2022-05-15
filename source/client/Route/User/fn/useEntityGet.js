@@ -33,5 +33,5 @@ export default () => {
     entity?.id !== params.id && !loading && !error && entityGet();
   }, [entity?.id, params.id, loading, error, entityGet]);
 
-  return [entity, error];
+  return [entity, loading, error];
 };

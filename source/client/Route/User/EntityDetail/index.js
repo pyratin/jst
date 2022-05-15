@@ -3,31 +3,33 @@
 import React from 'react';
 
 import useEntityGet from 'client/Route/User/fn/useEntityGet';
+import Loading from 'client/Route/Component/Loading';
 import Error from 'client/Route/Component/Error';
-import EntityDelete from 'client/Route/User/EntityDelete';
+import Header from './Component/Header';
 
 const EntityDetail = () => {
-  const [entity, error] = useEntityGet();
+  const [entity, loading, error] = useEntityGet();
+
+  const loadingRender = () => {
+    return loading && <Loading />;
+  };
 
   const errorRender = () => {
     return error && <Error error={error} />;
   };
 
   const headerRender = () => {
-    return (
-      <div className='header d-flex justify-content-center p-5 bg-light text-secondary'>
-        <div className='email fs-1 fw-lighter'>{entity?.email}</div>
-      </div>
-    );
+    return <Header entity={entity} />;
   };
 
   const _renderFn = () => {
-    return entity && <div>{headerRender()}{<EntityDelete/>}</div>;
+    return entity && <div className='success'>{headerRender()}</div>;
   };
 
   const renderFn = () => {
     return (
       <div>
+        {loadingRender()}
         {errorRender()}
         {_renderFn()}
       </div>
