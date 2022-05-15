@@ -12,8 +12,6 @@ argglobal
 %argdel
 tabnew
 tabnew
-tabnew
-tabnew
 tabrewind
 edit package.json
 argglobal
@@ -53,48 +51,8 @@ normal! zt
 keepjumps 39
 normal! 036|
 tabnext
-edit source/client/Route/index.js
-argglobal
-balt source/client/Route/index.js
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 14 - ((13 * winheight(0) + 20) / 41)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 14
-normal! 033|
-tabnext
-edit source/client/Route/User/EntityDetail/index.js
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 1
-normal! 0
-tabnext
 edit source/client/style/index.scss
 argglobal
-balt source/client/style/index.scss
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -111,11 +69,9 @@ keepjumps exe s:l
 normal! zt
 keepjumps 1
 normal! 0
-tabnext 4
+tabnext 2
 badd +1 package.json
 badd +1 source/client/store/index.js
-badd +1 source/client/Route/index.js
-badd +26 source/client/Route/User/EntityDetail/index.js
 badd +1 source/client/style/index.scss
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
