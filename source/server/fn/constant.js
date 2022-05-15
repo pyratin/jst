@@ -2,11 +2,12 @@
 
 export default {
   DATABASE: {
-    USER_COLLECTION_NAME: 'user'
+    USER_COLLECTION_NAME: 'user',
+    POST_COLLECTION_NAME: 'post'
   },
   JSONWEBTOKEN: {
     EXPIRES_IN: {
-      ACCESS: 300,
+      ACCESS: '1h',
       REFRESH: '1d'
     }
   }

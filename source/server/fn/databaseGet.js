@@ -30,10 +30,27 @@ const userCollectionInitialize = (database) => {
   );
 };
 
+const postCollectionInitialize = (database) => {
+  const collectionName = constant.DATABASE.POST_COLLECTION_NAME;
+
+  return database.execute(
+    `
+      create table if not exists ${collectionName} (
+        id varchar(100) primary key not null,
+        userId varchar(100) not null,
+        text text not null,
+        constraint userFk foreign key (userId) references user(id)
+      );
+    `.trim()
+  );
+};
+
 export default async (consoleLogFlag) => {
   const database = await _databaseGet(consoleLogFlag);
 
   await userCollectionInitialize(database);
+
+  await postCollectionInitialize(database);
 
   return database;
 };
