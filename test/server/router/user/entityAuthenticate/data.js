@@ -26,11 +26,11 @@ export default {
             _error: [
               {
                 source: 'root',
-                message: 'must have required property \'email\''
+                message: "must have required property 'email'"
               },
               {
                 source: 'root',
-                message: 'must have required property \'password\''
+                message: "must have required property 'password'"
               }
             ],
             status: 400

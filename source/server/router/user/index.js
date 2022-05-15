@@ -1,7 +1,7 @@
 'use strict';
 
 import { Router } from 'express';
-import idRegExpGet from 'server/router/fn/idRegExpGet';
+import constant from 'server/fn/constant';
 import entityCreate from './entityCreate';
 import entityAuthenticate from './entityAuthenticate';
 import entityDelete from './entityDelete';
@@ -17,7 +17,7 @@ export default (database) => {
         })
         .catch(next);
     })
-    .delete(`/:id(${idRegExpGet()})`, (request, response, next) => {
+    .delete(`/:id(${constant.PATTERN.ID})`, (request, response, next) => {
       return entityDelete(request.params, request.headers, database)
         .then((result) => {
           return response.status(result?.status ?? 200).json(result);
@@ -31,7 +31,7 @@ export default (database) => {
         })
         .catch(next);
     })
-    .get(`/:id(${idRegExpGet()})`, (request, response, next) => {
+    .get(`/:id(${constant.PATTERN.ID})`, (request, response, next) => {
       return entityGet(request.params, request.headers, database)
         .then((result) => {
           return response.status(result?.status ?? 200).json(result);

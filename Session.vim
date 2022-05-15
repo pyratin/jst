@@ -17,9 +17,12 @@ tabnew
 tabnew
 tabnew
 tabnew
+tabnew
+tabnew
 tabrewind
 edit package.json
 argglobal
+balt package.json
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -37,69 +40,8 @@ normal! zt
 keepjumps 73
 normal! 023|
 tabnext
-edit source/server/fn/constant.js
-argglobal
-balt package.json
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 10 - ((9 * winheight(0) + 20) / 41)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 10
-normal! 017|
-tabnext
-edit source/server/index.js
-argglobal
-balt package.json
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 20) / 41)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 1
-normal! 0
-tabnext
-edit source/server/router/index.js
-argglobal
-balt source/server/index.js
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 11 - ((10 * winheight(0) + 20) / 41)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 11
-normal! 04|
-tabnext
 edit source/server/router/post/index.js
 argglobal
-balt source/server/router/index.js
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -110,12 +52,111 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 14 - ((13 * winheight(0) + 20) / 40)
+let s:l = 6 - ((5 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 14
-normal! 021|
+keepjumps 6
+normal! 036|
+tabnext
+edit source/server/router/post/entityGet/index.js
+argglobal
+balt source/server/router/post/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 26 - ((25 * winheight(0) + 20) / 41)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 26
+normal! 03|
+tabnext
+edit source/server/router/post/entityDelete/index.js
+argglobal
+balt source/server/router/post/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 49 - ((40 * winheight(0) + 20) / 41)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 49
+normal! 02|
+tabnext
+edit source/server/router/post/entityUpdate/index.js
+argglobal
+balt source/server/router/post/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 13 - ((9 * winheight(0) + 20) / 41)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 13
+normal! 0
+tabnext
+edit test/server/router/post/entityCreate/index.js
+argglobal
+balt source/server/router/post/entityUpdate/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 130 - ((27 * winheight(0) + 20) / 41)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 130
+normal! 044|
+tabnext
+edit test/server/router/post/entityCreate/data.js
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 46 - ((20 * winheight(0) + 20) / 41)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 46
+normal! 057|
 tabnext
 edit source/server/router/post/entityCreate/index.js
 argglobal
@@ -130,11 +171,11 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 31 - ((24 * winheight(0) + 20) / 40)
+let s:l = 24 - ((14 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 31
+keepjumps 24
 normal! 0
 tabnext
 edit source/client/store/index.js
@@ -149,7 +190,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 51 - ((31 * winheight(0) + 20) / 40)
+let s:l = 51 - ((20 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -158,6 +199,7 @@ normal! 04|
 tabnext
 edit source/client/style/index.scss
 argglobal
+balt source/client/style/index.scss
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -174,19 +216,30 @@ keepjumps exe s:l
 normal! zt
 keepjumps 1
 normal! 0
-tabnext 5
+tabnext 6
 badd +73 package.json
-badd +1 source/client/store/index.js
-badd +1 source/client/style/index.scss
+badd +14 source/server/fn/constant.js
 badd +0 source/server/index.js
-badd +45 source/server/fn/databaseGet.js
-badd +6 source/server/fn/constant.js
-badd +13 source/server/router/index.js
-badd +12 source/server/router/post/index.js
-badd +5 source/server/router/post/entityCreate/index.js
-badd +0 source/server/router/post/fn/bodyFragment.js
-badd +12 source/server/router/post/entityCreate/fn/bodyValidate.js
-badd +16 source/server/router/post/fn/entityCreate.js
+badd +11 source/server/router/index.js
+badd +6 source/server/router/post/index.js
+badd +41 source/server/router/post/entityCreate/index.js
+badd +51 source/client/store/index.js
+badd +1 source/client/style/index.scss
+badd +10 source/server/router/post/entityUpdate/index.js
+badd +7 source/server/router/post/entityDelete/index.js
+badd +38 source/server/router/post/entityGet/index.js
+badd +130 test/server/router/post/entityCreate/index.js
+badd +46 test/server/router/post/entityCreate/data.js
+badd +0 test/server/index.js
+badd +10 source/server/router/user/index.js
+badd +160 test/server/router/user/entityCreate/index.js
+badd +135 test/server/router/user/entityAuthenticate/index.js
+badd +3 test/server/router/user/entityDelete/index.js
+badd +38 .eslintrc.js
+badd +6 test/server/router/user/entityAuthenticate/data.js
+badd +4 test/server/router/user/entityCreate/data.js
+badd +0 test/server/router/user/entityDelete/data.js
+badd +93 test/server/router/user/entityGet/data.js
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif

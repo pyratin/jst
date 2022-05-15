@@ -4,7 +4,7 @@ import userAuthenticationValidate from 'server/router/fn/userAuthenticationValid
 import bodyValidate from './fn/bodyValidate';
 import entityCreate from 'server/router/post/fn/entityCreate';
 
-const validateFn = async (headers, body, database) => {
+export const validateFn = async (headers, body, database) => {
   let user;
 
   try {
@@ -22,13 +22,6 @@ const validateFn = async (headers, body, database) => {
   return { user };
 };
 
-const dataGet = (userId, body) => {
-  return {
-    userId,
-    ...body
-  };
-};
-
 export default async (headers, body, database) => {
   let user;
 
@@ -38,9 +31,13 @@ export default async (headers, body, database) => {
     return error;
   }
 
-  const data = dataGet(user.id, body);
-
-  const result = await entityCreate(data, database);
+  const result = await entityCreate(
+    {
+      userId: user.id,
+      ...body
+    },
+    database
+  );
 
   return result;
 };

@@ -1,13 +1,13 @@
 'use strict';
 
 export default {
-  text: 'entityGet',
+  text: 'entityCreate',
   describe: [
     {
       text: 'validateFn',
       before: [
         {
-          text: 'entityCreate',
+          text: 'userCreate',
           argument: {
             body: {
               email: 'user01@test.com',
@@ -17,40 +17,6 @@ export default {
         }
       ],
       it: [
-        {
-          text: 'id: invalid',
-          argument: {
-            params: {
-              id: '54445781-6a76-4a5d-a37b-42a81f0d8b2x'
-            }
-          },
-          error: {
-            _error: [
-              {
-                source: 'id',
-                message: 'invalid'
-              }
-            ],
-            status: 400
-          }
-        },
-        {
-          text: 'entity: not found',
-          argument: {
-            params: {
-              id: '251c77d4-1a18-4594-833f-efc240504d41'
-            }
-          },
-          error: {
-            _error: [
-              {
-                source: 'entity',
-                message: 'not found'
-              }
-            ],
-            status: 404
-          }
-        },
         {
           text: 'authentication: failed',
           argument: {
@@ -67,6 +33,36 @@ export default {
             ],
             status: 401
           }
+        },
+        {
+          text: 'text: must have required propery',
+          argument: {
+            body: {}
+          },
+          error: {
+            _error: [
+              {
+                source: 'root',
+                message: "must have required property 'text'"
+              }
+            ],
+            status: 400
+          }
+        },
+        {
+          text: 'text: must NOT have fewer than 1 characters',
+          argument: {
+            body: { text: '' }
+          },
+          error: {
+            _error: [
+              {
+                source: 'text',
+                message: 'must NOT have fewer than 1 characters'
+              }
+            ],
+            status: 400
+          }
         }
       ]
     },
@@ -74,7 +70,7 @@ export default {
       text: 'default',
       before: [
         {
-          text: 'entityCreate',
+          text: 'userCreate',
           argument: {
             body: {
               email: 'user01@test.com',
@@ -85,7 +81,12 @@ export default {
       ],
       it: [
         {
-          text: 'result: { ... }'
+          text: 'result: { id, userId, ...body }',
+          argument: {
+            body: {
+              text: 'TEXT'
+            }
+          }
         }
       ]
     }

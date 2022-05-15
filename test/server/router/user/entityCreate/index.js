@@ -9,6 +9,7 @@ import entityCreate, {
   dataGet
 } from 'server/router/user/entityCreate';
 import entityDelete from 'server/router/user/entityDelete';
+import constant from 'server/fn/constant';
 import objectFragmentGet from 'test/server/router/fn/objectFragmentGet';
 import ajvInstanceGet from 'server/router/fn/ajvInstanceGet';
 
@@ -130,7 +131,10 @@ describe(__data.text, () => {
           const schema = {
             type: 'object',
             properties: {
-              id: { type: 'string' },
+              id: {
+                type: 'string',
+                pattern: constant.PATTERN.ID
+              },
               ...objectFragmentGet(data.argument.body),
               password: {
                 not: { const: data.argument.body.password }

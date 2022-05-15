@@ -1,10 +1,10 @@
 'use strict';
 
 import idValidate from 'server/router/fn/idValidate';
+import entityExistsValidate from 'server/router/post/fn/entityExistsValidate';
 import userAuthenticationValidate from 'server/router/fn/userAuthenticationValidate';
-import entityExistsValidate from 'server/router/user/fn/entityExistsValidate';
 
-export const validateFn = async (params, headers, database) => {
+const validateFn = async (params, headers, database) => {
   let entity;
 
   try {

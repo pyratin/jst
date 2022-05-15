@@ -51,19 +51,21 @@ describe(__data.text, () => {
     it(_data.it[1].text, () => {
       const data = _data.it[1];
 
-      return validateFn(data.argument.params, data.argument.headers).catch(
-        (error) => {
-          return assert.deepEqual(error, data.error);
-        }
-      );
+      return validateFn(
+        data.argument.params,
+        { authorization: entity01.token.access },
+        database
+      ).catch((error) => {
+        return assert.deepEqual(error, data.error);
+      });
     });
 
     it(_data.it[2].text, () => {
       const data = _data.it[2];
 
       return validateFn(
-        data.argument.params,
-        { authorization: entity01.token.access },
+        { id: entity01.id },
+        data.argument.headers,
         database
       ).catch((error) => {
         return assert.deepEqual(error, data.error);

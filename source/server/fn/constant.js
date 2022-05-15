@@ -10,5 +10,8 @@ export default {
       ACCESS: '1h',
       REFRESH: '1d'
     }
+  },
+  PATTERN: {
+    ID: '\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}'
   }
 };
