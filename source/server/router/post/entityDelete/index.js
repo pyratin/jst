@@ -6,7 +6,7 @@ import userAuthenticationValidate from 'server/router/fn/userAuthenticationValid
 import userAuthorizationValidate from 'server/router/fn/userAuthorizationValidate';
 import entityDelete from 'server/router/post/fn/entityDelete';
 
-const validateFn = async (params, headers, database) => {
+export const validateFn = async (params, headers, database) => {
   let entity;
 
   let user;
