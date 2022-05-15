@@ -19,6 +19,8 @@ tabnew
 tabnew
 tabnew
 tabnew
+tabnew
+tabnew
 tabrewind
 edit package.json
 argglobal
@@ -99,6 +101,46 @@ normal! zt
 keepjumps 49
 normal! 02|
 tabnext
+edit test/server/router/post/entityUpdate/index.js
+argglobal
+balt source/server/router/post/entityDelete/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 12 - ((11 * winheight(0) + 20) / 41)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 12
+normal! 049|
+tabnext
+edit test/server/router/post/entityUpdate/data.js
+argglobal
+balt test/server/router/post/entityUpdate/index.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 160 - ((34 * winheight(0) + 20) / 41)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 160
+normal! 033|
+tabnext
 edit source/server/router/post/entityUpdate/index.js
 argglobal
 balt source/server/router/post/index.js
@@ -112,12 +154,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 13 - ((9 * winheight(0) + 20) / 41)
+let s:l = 1 - ((0 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 13
-normal! 0
+keepjumps 1
+normal! 07|
 tabnext
 edit test/server/router/post/entityCreate/index.js
 argglobal
@@ -132,12 +174,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 130 - ((27 * winheight(0) + 20) / 41)
+let s:l = 1 - ((0 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 130
-normal! 044|
+keepjumps 1
+normal! 013|
 tabnext
 edit test/server/router/post/entityCreate/data.js
 argglobal
@@ -151,12 +193,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 46 - ((20 * winheight(0) + 20) / 41)
+let s:l = 89 - ((40 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 46
-normal! 057|
+keepjumps 89
+normal! 011|
 tabnext
 edit source/server/router/post/entityCreate/index.js
 argglobal
@@ -171,11 +213,11 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 24 - ((14 * winheight(0) + 20) / 41)
+let s:l = 33 - ((23 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 24
+keepjumps 33
 normal! 0
 tabnext
 edit source/client/store/index.js
@@ -216,7 +258,7 @@ keepjumps exe s:l
 normal! zt
 keepjumps 1
 normal! 0
-tabnext 6
+tabnext 5
 badd +73 package.json
 badd +14 source/server/fn/constant.js
 badd +0 source/server/index.js
@@ -240,6 +282,8 @@ badd +6 test/server/router/user/entityAuthenticate/data.js
 badd +4 test/server/router/user/entityCreate/data.js
 badd +0 test/server/router/user/entityDelete/data.js
 badd +93 test/server/router/user/entityGet/data.js
+badd +12 test/server/router/post/entityUpdate/index.js
+badd +76 test/server/router/post/entityUpdate/data.js
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
@@ -251,6 +295,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 let g:this_session = v:this_session
 let g:this_obsession = v:this_session
 doautoall SessionLoadPost

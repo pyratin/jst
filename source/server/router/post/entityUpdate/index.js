@@ -7,7 +7,7 @@ import userAuthorizationValidate from 'server/router/fn/userAuthorizationValidat
 import bodyValidate from './fn/bodyValidate';
 import entityUpdate from 'server/router/post/fn/entityUpdate';
 
-const validateFn = async (params, headers, body, database) => {
+export const validateFn = async (params, headers, body, database) => {
   let entity;
 
   let user;
