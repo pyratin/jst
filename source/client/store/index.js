@@ -17,7 +17,10 @@ const encryptStorage = new EncryptStorage(globalThis.ENCRYPT_STORAGE_SECRET, {
 const _store = {
   user: {
     authorization: {},
-    collection: {}
+    collection: {
+      dictionary: {},
+      info: {}
+    }
   }
 };
 

@@ -5,6 +5,7 @@ import produce from 'immer';
 import { _store } from 'client/store';
 import entityDeleteHandle from './fn/entityDeleteHandle';
 import entityGetHandle from './fn/entityGetHandle';
+import entityCollectionGetHandle from './fn/entityCollectionGetHandle';
 
 export default (store, { type, result }) => {
   switch (type) {
@@ -19,16 +20,34 @@ export default (store, { type, result }) => {
       return produce(store, (draft) => {
         draft.user.authorization = _store.user.authorization;
 
-        draft.user.collection = entityDeleteHandle(result, store.user.collection);
+        draft.user.collection = entityDeleteHandle(
+          result,
+          store.user.collection
+        );
       });
 
     case 'USER_GET':
       return produce(store, (draft) => {
-        draft.user.collection = entityGetHandle(result, store.user.collection);
+        draft.user.collection = entityGetHandle(result, store.user.collection, {
+          post: {
+            collection: {
+              dictionary: {},
+              info: {}
+            }
+          }
+        });
+      });
+
+    case 'USER_POST_COLLECTION_GET':
+      return produce(store, (draft) => {
+        draft.user.collection.dictionary[result.info.userId].post.collection =
+          entityCollectionGetHandle(
+            result,
+            store.user.collection.dictionary[result.info.userId].post.collection
+          );
       });
 
     default:
       return store;
   }
 };
-

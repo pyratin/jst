@@ -9,6 +9,7 @@ import entityDelete from 'server/router/user/entityDelete';
 import entityPostCollectionGet, {
   validateFn
 } from 'server/router/user/entityPostCollectionGet';
+import constant from 'server/fn/constant';
 import ajvInstanceGet from 'server/router/fn/ajvInstanceGet';
 
 describe(__data.text, () => {
@@ -138,10 +139,18 @@ describe(__data.text, () => {
             info: {
               type: 'object',
               properties: {
+                userId: {
+                  type: 'string',
+                  pattern: constant.PATTERN.ID
+                },
                 hasMore: { type: 'boolean' }
-              }
+              },
+              required: ['userId', 'hasMore'],
+              additionalProperties: false
             }
-          }
+          },
+          required: ['collection', 'info'],
+          additionalProperties: false
         };
 
         return assert.deepEqual(ajvInstanceGet().compile(schema)(result), true);

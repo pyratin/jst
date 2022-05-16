@@ -36,6 +36,7 @@ export default async (userId, limit, offset, database) => {
   const result = {
     collection: collection,
     info: {
+      userId,
       hasMore: await hasMoreGet(
         collection.at(-1)?.id,
         userId,

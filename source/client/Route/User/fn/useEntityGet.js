@@ -11,7 +11,7 @@ export default () => {
 
   const params = useParams();
 
-  const entity = store.user.collection[params.id];
+  const entity = store.user.collection.dictionary[params.id];
 
   const [loading, loadingSet] = useState(false);
 

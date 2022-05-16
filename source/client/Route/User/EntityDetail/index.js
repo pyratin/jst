@@ -6,6 +6,7 @@ import useEntityGet from 'client/Route/User/fn/useEntityGet';
 import Loading from 'client/Route/Component/Loading';
 import Error from 'client/Route/Component/Error';
 import Header from './Component/Header';
+import PostCollection from './Component/PostCollection';
 
 const EntityDetail = () => {
   const [entity, loading, error] = useEntityGet();
@@ -22,8 +23,19 @@ const EntityDetail = () => {
     return <Header entity={entity} />;
   };
 
+  const postCollectionRender = () => {
+    return <PostCollection />;
+  };
+
   const _renderFn = () => {
-    return entity && <div className='success'>{headerRender()}</div>;
+    return (
+      entity && (
+        <div className='success'>
+          {headerRender()}
+          {postCollectionRender()}
+        </div>
+      )
+    );
   };
 
   const renderFn = () => {
