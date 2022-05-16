@@ -1,7 +1,7 @@
 'use strict';
 
 export default {
-  text: 'entityUpdate',
+  text: 'post: entityUpdate',
   describe: [
     {
       text: 'validateFn',

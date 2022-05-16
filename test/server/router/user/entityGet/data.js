@@ -1,7 +1,7 @@
 'use strict';
 
 export default {
-  text: 'entityGet',
+  text: 'user: entityGet',
   describe: [
     {
       text: 'validateFn',

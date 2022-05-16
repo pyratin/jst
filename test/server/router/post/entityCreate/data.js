@@ -1,7 +1,7 @@
 'use strict';
 
 export default {
-  text: 'entityCreate',
+  text: 'post: entityCreate',
   describe: [
     {
       text: 'validateFn',

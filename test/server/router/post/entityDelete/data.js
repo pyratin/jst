@@ -1,11 +1,38 @@
 'use strict';
 
 export default {
-  text: 'entityDelete',
+  text: 'post: entityDelete',
   describe: [
     {
       text: 'validateFn',
-      before: [],
+      before: [
+        {
+          text: 'userCreate',
+          argument: {
+            body: {
+              email: 'user01@test.com',
+              password: 'user01Test'
+            }
+          }
+        },
+        {
+          text: 'userCreate',
+          argument: {
+            body: {
+              email: 'user02@test.com',
+              password: 'user02Test'
+            }
+          }
+        },
+        {
+          text: 'entityCreate',
+          argument: {
+            body: {
+              text: 'TEXT'
+            }
+          }
+        }
+      ],
       it: [
         {
           text: 'id: invalid',
@@ -40,6 +67,62 @@ export default {
             ],
             status: 404
           }
+        },
+        {
+          text: 'authentication: failed',
+          argument: {
+            headers: {
+              authorization: 'x'
+            }
+          },
+          error: {
+            _error: [
+              {
+                source: 'authentication',
+                message: 'failed'
+              }
+            ],
+            status: 401
+          }
+        },
+        {
+          text: 'authorization: failed',
+          error: {
+            _error: [
+              {
+                source: 'authorization',
+                message: 'failed'
+              }
+            ],
+            status: 403
+          }
+        }
+      ]
+    },
+    {
+      text: 'default',
+      before: [
+        {
+          text: 'userCreate',
+          argument: {
+            body: {
+              email: 'user01@test.com',
+              password: 'user01Test'
+            }
+          }
+        },
+        {
+          text: 'entityCreate',
+          argument: {
+            body: {
+              text: 'TEXT'
+            }
+          }
+        }
+      ],
+      it: [
+        {
+          text: 'result: { id }'
         }
       ]
     }

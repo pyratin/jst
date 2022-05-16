@@ -1,7 +1,7 @@
 'use strict';
 
 export default {
-  text: 'entityDelete',
+  text: 'user: entityDelete',
   describe: [
     {
       text: 'validateFn',
