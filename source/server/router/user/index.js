@@ -7,6 +7,7 @@ import entityAuthenticate from './entityAuthenticate';
 import entityDelete from './entityDelete';
 import entityGet from './entityGet';
 import entityTokenGet from './entityTokenGet';
+import entityPostCollectionGet from './entityPostCollectionGet';
 
 export default (database) => {
   return Router()
@@ -40,6 +41,18 @@ export default (database) => {
     })
     .get('/token', (request, response, next) => {
       return entityTokenGet(request.headers, database)
+        .then((result) => {
+          return response.status(result?.status ?? 200).json(result);
+        })
+        .catch(next);
+    })
+    .get(`/:id(${constant.PATTERN.ID})/post`, (request, response, next) => {
+      return entityPostCollectionGet(
+        request.params,
+        request.headers,
+        request.query,
+        database
+      )
         .then((result) => {
           return response.status(result?.status ?? 200).json(result);
         })

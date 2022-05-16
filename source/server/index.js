@@ -5,6 +5,7 @@ import path from 'path';
 import express from 'express';
 
 import databaseGet from './fn/databaseGet';
+import queryParse from './fn/queryParse';
 import router from './router';
 
 (async () => {
@@ -19,6 +20,7 @@ import router from './router';
     .set('views', path.join(process.cwd(), 'source/server/view'))
     .use(express.static(path.join(process.cwd(), 'public/client')))
     .use(express.json())
+    .use(queryParse)
     .use('/', router(database))
     .get('*', (request, response) => {
       return response.render('index', { title: process.env.npm_package_name });

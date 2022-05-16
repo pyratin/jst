@@ -8,7 +8,8 @@ export default (id, database) => {
   return database
     .execute(
       `
-      delete from ${collectionName} where id=?
+      delete from ${collectionName} \
+      where id=?
     `.trim(),
       [id]
     )

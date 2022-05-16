@@ -7,7 +7,8 @@ export default (id, database) => {
 
   return database.execute(
     `
-      select * from ${collectionName} where id=?
+      select * from ${collectionName} \
+      where id=?
     `.trim(),
     [id]
   );

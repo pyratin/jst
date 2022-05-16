@@ -35,23 +35,6 @@ export default {
           }
         },
         {
-          text: 'entity: not found',
-          argument: {
-            params: {
-              id: '251c77d4-1a18-4594-833f-efc240504d41'
-            }
-          },
-          error: {
-            _error: [
-              {
-                source: 'entity',
-                message: 'not found'
-              }
-            ],
-            status: 404
-          }
-        },
-        {
           text: 'authentication: failed',
           argument: {
             headers: {

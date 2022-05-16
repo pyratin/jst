@@ -6,7 +6,9 @@ export default (input, collectionName) => {
   }, '');
 
   const query = `
-      update ${collectionName} set ${string} where id=?
+      update ${collectionName} \
+      set ${string} \
+      where id=?
     `.trim();
 
   return query;

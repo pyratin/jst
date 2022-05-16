@@ -7,7 +7,8 @@ export default (email, database) => {
 
   return database.execute(
     `
-      select * from ${collectionName} where email=?
+      select * from ${collectionName} \
+      where email=?
     `.trim(),
     [email]
   );
