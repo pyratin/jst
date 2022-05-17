@@ -24,7 +24,7 @@ const EntityDetail = () => {
   };
 
   const postCollectionRender = () => {
-    return <PostCollection />;
+    return <PostCollection user={entity} />;
   };
 
   const _renderFn = () => {

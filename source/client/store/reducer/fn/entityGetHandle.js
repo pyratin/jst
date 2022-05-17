@@ -1,12 +1,9 @@
 'use strict';
 
-export default (result, collection, extend = {}) => {
+export default (result, collection) => {
   const dictionary = {
     ...collection.dictionary,
-    [result.id]: {
-      ...result,
-      ...extend
-    }
+    [result.id]: result
   };
 
   return {

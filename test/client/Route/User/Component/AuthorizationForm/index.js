@@ -77,12 +77,12 @@ describe('AuthorizationForm', () => {
     cy.get('[type=submit]').should('have.descendants', '.LoadingInline');
   });
 
-  it('[data-key="eamil"].type() :: [data-key="email"].value', () => {
+  it('[data-key="email"].type() :: [data-key="email"].value', () => {
     const email = 'EMAIL';
 
     mount(
       <Wrapper>
-        <AuthorizationForm input={{}} />
+        <AuthorizationForm input={{ email: '' }} />
       </Wrapper>
     );
 
@@ -96,7 +96,7 @@ describe('AuthorizationForm', () => {
 
     mount(
       <Wrapper>
-        <AuthorizationForm input={{}} />
+        <AuthorizationForm input={{ password: '' }} />
       </Wrapper>
     );
 

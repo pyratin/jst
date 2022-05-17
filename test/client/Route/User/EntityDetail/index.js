@@ -14,9 +14,19 @@ describe('EntityDetail', () => {
       email: 'EMAIL'
     };
 
+    const error = {
+      _error: [
+        {
+          source: 'ERROR-SOURCE',
+          message: 'ERROR-MESSAGE'
+        }
+      ],
+      status: 400
+    };
+
     cy.intercept('GET', `/user/${entity.id}`, {
-      statusCode: 200,
-      body: entity,
+      statusCode: error.status,
+      body: error,
       delay: 100
     }).as('entityGet');
 
@@ -41,9 +51,19 @@ describe('EntityDetail', () => {
       email: 'EMAIL'
     };
 
+    const error = {
+      _error: [
+        {
+          source: 'ERROR-SOURCE',
+          message: 'ERROR-MESSAGE'
+        }
+      ],
+      status: 400
+    };
+
     cy.intercept('GET', `/user/${entity.id}`, {
-      statusCode: 200,
-      body: entity
+      statusCode: error.status,
+      body: error
     }).as('entityGet');
 
     history.pushState(null, null, `/User/${entity.id}`);
@@ -51,7 +71,7 @@ describe('EntityDetail', () => {
     mount(
       <Wrapper>
         <Routes>
-          <Route path='/user/:id' element={<EntityDetail />} />
+          <Route path='/User/:id' element={<EntityDetail />} />
         </Routes>
       </Wrapper>
     );
@@ -87,7 +107,7 @@ describe('EntityDetail', () => {
     mount(
       <Wrapper>
         <Routes>
-          <Route path='/user/:id' element={<EntityDetail />} />
+          <Route path='/User/:id' element={<EntityDetail />} />
         </Routes>
       </Wrapper>
     );
@@ -112,17 +132,30 @@ describe('EntityDetail', () => {
       body: entity
     }).as('entityGet');
 
+    cy.intercept('GET', `/user/${entity.id}/post?**`, {
+      statusCode: 200,
+      body: {
+        collection: [],
+        info: {
+          userId: entity.id,
+          hasMore: false
+        }
+      }
+    }).as('entityPostCollectionGet');
+
     history.pushState(null, null, `/User/${entity.id}`);
 
     mount(
       <Wrapper>
         <Routes>
-          <Route path='/user/:id' element={<EntityDetail />} />
+          <Route path='/User/:id' element={<EntityDetail />} />
         </Routes>
       </Wrapper>
     );
 
     cy.wait('@entityGet');
+
+    cy.wait('@entityPostCollectionGet');
 
     cy.get('.EntityDetail').should('have.descendants', '.success');
 

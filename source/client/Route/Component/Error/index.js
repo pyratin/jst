@@ -42,7 +42,7 @@ const Error = (props) => {
 
   const renderFn = () => {
     return (
-      <div className='min-vh-100 d-flex justify-content-center align-items-center'>
+      <div className='d-flex justify-content-center mt-5'>
         {_renderFn()}
       </div>
     );

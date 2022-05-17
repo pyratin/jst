@@ -22,20 +22,24 @@ export default (store, { type, result }) => {
 
         draft.user.collection = entityDeleteHandle(
           result,
-          store.user.collection
+          draft.user.collection
         );
       });
 
     case 'USER_GET':
       return produce(store, (draft) => {
-        draft.user.collection = entityGetHandle(result, store.user.collection, {
-          post: {
-            collection: {
-              dictionary: {},
-              info: {}
+        draft.user.collection = entityGetHandle(
+          {
+            ...result,
+            post: {
+              collection: {
+                dictionary: {},
+                info: {}
+              }
             }
-          }
-        });
+          },
+          draft.user.collection
+        );
       });
 
     case 'USER_POST_COLLECTION_GET':
@@ -43,7 +47,7 @@ export default (store, { type, result }) => {
         draft.user.collection.dictionary[result.info.userId].post.collection =
           entityCollectionGetHandle(
             result,
-            store.user.collection.dictionary[result.info.userId].post.collection
+            draft.user.collection.dictionary[result.info.userId].post.collection
           );
       });
 

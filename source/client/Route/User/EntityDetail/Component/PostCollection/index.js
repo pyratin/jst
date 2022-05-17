@@ -7,62 +7,67 @@ import React, {
   useEffect,
   Fragment
 } from 'react';
-import { useParams } from 'react-router-dom';
+import ReactInfiniteScroller from 'react-infinite-scroller';
 
 import { Store } from 'client/store';
 import entityPostCollectionGetAction from 'client/store/action/user/entityPostCollectionGet';
-import ReactInfiniteScroller from 'react-infinite-scroller';
+import Error from 'client/Route/Component/Error';
+import CollectionEmpty from 'client/Route/Component/CollectionEmpty';
 import LoadingInline from 'client/Route/Component/LoadingInline';
 import Item from './Item';
 
-const PostCollection = () => {
+const PostCollection = (props) => {
   const limit = 1;
 
-  const { store, dispatch } = useContext(Store);
+  const { dispatch } = useContext(Store);
 
-  const params = useParams();
+  const entityPostCollection = Object.values(
+    props.user.post.collection.dictionary
+  );
 
-  const entity = store.user.collection.dictionary[params.id];
-
-  const entityPostCollection = Object.values(entity.post.collection.dictionary);
-
-  const hasMore = entity.post.collection.info.hasMore;
+  const hasMore = props.user.post.collection.info.hasMore;
 
   const [loading, loadingSet] = useState(false);
+
+  const [error, errorSet] = useState();
 
   const entityPostCollectionGet = useCallback(
     (offset) => {
       loadingSet(true);
 
       return dispatch(
-        entityPostCollectionGetAction(params.id, {
+        entityPostCollectionGetAction(props.user.id, {
           limit,
           offset
         })
-      ).finally(() => {
-        return loadingSet(false);
-      });
+      )
+        .catch((error) => {
+          return errorSet(error);
+        })
+        .finally(() => {
+          return loadingSet(false);
+        });
     },
-    [dispatch, params.id]
+    [dispatch, props.user.id]
   );
 
   useEffect(() => {
-    entityPostCollectionGet(0);
-  }, [entityPostCollectionGet]);
+    entityPostCollectionGet(entityPostCollection.length);
+  }, [entityPostCollectionGet, entityPostCollection.length]);
+
+  const collectionEmptyRender = () => {
+    return (
+      !loading &&
+      !entityPostCollection.length && <CollectionEmpty collectionName='post' />
+    );
+  };
 
   const onLoadMoreHandle = () => {
     return !loading && entityPostCollectionGet(entityPostCollection.length);
   };
 
-  const loaderRender = () => {
-    return (
-      <div
-        className='loader d-flex justify-content-center align-items-center p-5'
-        key='loader'
-      >
-        <LoadingInline />
-      </div>
-    );
+  const errorRender = () => {
+    return error && <Error error={error} />;
   };
 
   const itemRender = (post, index) => {
@@ -73,27 +78,56 @@ const PostCollection = () => {
     );
   };
 
-  const entityPostCollectionRender = () => {
+  const _entityPostCollectionRender = () => {
     return entityPostCollection.map((post, index) => {
       return itemRender(post, index);
     });
   };
 
-  const _renderFn = () => {
+  const entityPostCollectionRender = () => {
     return (
       <ReactInfiniteScroller
         pageStart={0}
         loadMore={onLoadMoreHandle}
         hasMore={hasMore}
-        loader={loaderRender()}
       >
-        {entityPostCollectionRender()}
+        {_entityPostCollectionRender()}
       </ReactInfiniteScroller>
     );
   };
 
+  const _renderFn = () => {
+    return (
+      !error && (
+        <div className='success'>
+          {collectionEmptyRender()}
+          {entityPostCollectionRender()}
+        </div>
+      )
+    );
+  };
+
+  const loadingRender = () => {
+    return (
+      loading && (
+        <div
+          key='loader'
+          className='loader d-flex justify-content-center align-items-center'
+        >
+          <LoadingInline />
+        </div>
+      )
+    );
+  };
+
   const renderFn = () => {
-    return <div>{_renderFn()}</div>;
+    return (
+      <div>
+        {errorRender()}
+        {_renderFn()}
+        {loadingRender()}
+      </div>
+    );
   };
 
   return <div className='PostCollection'>{renderFn()}</div>;
