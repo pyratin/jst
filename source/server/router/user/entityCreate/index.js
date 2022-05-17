@@ -4,6 +4,7 @@ import bodyValidate from './fn/bodyValidate';
 import emailUnregisteredValidate from 'server/router/user/fn/emailUnregisteredValidate';
 import passwordHashGet from 'server/router/user/fn/passwordHashGet';
 import entityCreate from 'server/router/user/fn/entityCreate';
+import entityProfileCreate from 'server/router/user/fn/entityProfileCreate';
 import tokenGet from 'server/router/user/fn/tokenGet';
 
 export const validateFn = async (body, database) => {
@@ -38,8 +39,11 @@ export default async (body, database) => {
 
   const result = await entityCreate(data, database);
 
+  const profile = (await entityProfileCreate(result.id, database))?.text;
+
   return {
     ...result,
+    profile,
     token: tokenGet(result.id)
   };
 };

@@ -139,6 +139,7 @@ describe(__data.text, () => {
               password: {
                 not: { const: data.argument.body.password }
               },
+              profile: { type: 'string' },
               token: {
                 type: 'object',
                 properties: {

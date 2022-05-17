@@ -3,6 +3,7 @@
 import bodyValidate from './fn/bodyValidate';
 import emailValidate from './fn/emailValidate';
 import passwordValidate from './fn/passwordValidate';
+import entityProfileGet from 'server/router/user/fn/entityProfileGet';
 import tokenGet from 'server/router/user/fn/tokenGet';
 
 export const validateFn = async (body, database) => {
@@ -38,8 +39,11 @@ export default async (body, database) => {
     return error;
   }
 
+  const [[{ text: profile }]] = await entityProfileGet(entity.id, database);
+
   const result = {
     ...entity,
+    profile,
     token: tokenGet(entity.id)
   };
 

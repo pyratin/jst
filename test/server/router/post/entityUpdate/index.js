@@ -7,7 +7,6 @@ import databaseGet from 'server/fn/databaseGet';
 import userCreate from 'server/router/user/entityCreate';
 import userDelete from 'server/router/user/entityDelete';
 import entityCreate from 'server/router/post/entityCreate';
-import entityDelete from 'server/router/post/entityDelete';
 import entityUpdate, { validateFn } from 'server/router/post/entityUpdate';
 import objectFragmentGet from 'test/server/router/fn/objectFragmentGet';
 import ajvInstanceGet from 'server/router/fn/ajvInstanceGet';
@@ -56,14 +55,6 @@ describe(__data.text, () => {
       ).then((result) => {
         entity01 = result;
       });
-    });
-
-    after(() => {
-      return entityDelete(
-        { id: entity01.id },
-        { authorization: user01.token.access },
-        database
-      );
     });
 
     after(() => {
@@ -176,14 +167,6 @@ describe(__data.text, () => {
       ).then((result) => {
         entity01 = result;
       });
-    });
-
-    after(() => {
-      return entityDelete(
-        { id: entity01.id },
-        { authorization: user01.token.access },
-        database
-      );
     });
 
     after(() => {

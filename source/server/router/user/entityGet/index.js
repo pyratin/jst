@@ -3,6 +3,7 @@
 import idValidate from 'server/router/fn/idValidate';
 import userAuthenticationValidate from 'server/router/fn/userAuthenticationValidate';
 import entityExistsValidate from 'server/router/user/fn/entityExistsValidate';
+import entityProfileGet from 'server/router/user/fn/entityProfileGet';
 
 export const validateFn = async (params, headers, database) => {
   let entity;
@@ -37,5 +38,10 @@ export default async (params, headers, database) => {
     return error;
   }
 
-  return entity;
+  const [[{text: profile}]] = await entityProfileGet(entity.id, database);
+
+  return {
+    ...entity,
+    profile
+  };
 };

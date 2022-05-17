@@ -5,7 +5,6 @@ import assert from 'assert';
 import __data from './data';
 import databaseGet from 'server/fn/databaseGet';
 import userCreate from 'server/router/user/entityCreate';
-import entityDelete from 'server/router/post/entityDelete';
 import userDelete from 'server/router/user/entityDelete';
 import entityCreate, { validateFn } from 'server/router/post/entityCreate';
 import objectFragmentGet from 'test/server/router/fn/objectFragmentGet';
@@ -82,21 +81,11 @@ describe(__data.text, () => {
 
     let user01;
 
-    let entity01;
-
     before(() => {
       return userCreate(_data.before[0].argument.body, database).then(
         (result) => {
           user01 = result;
         }
-      );
-    });
-
-    after(() => {
-      return entityDelete(
-        { id: entity01.id },
-        { authorization: user01.token.access },
-        database
       );
     });
 
@@ -116,11 +105,6 @@ describe(__data.text, () => {
         data.argument.body,
         database
       )
-        .then((result) => {
-          entity01 = result;
-
-          return result;
-        })
         .then((result) => {
           const schema = {
             type: 'object',

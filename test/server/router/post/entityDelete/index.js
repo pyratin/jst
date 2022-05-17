@@ -56,14 +56,6 @@ describe(__data.text, () => {
     });
 
     after(() => {
-      return entityDelete(
-        { id: entity01.id },
-        { authorization: user01.token.access },
-        database
-      );
-    });
-
-    after(() => {
       return userDelete(
         { id: user01.id },
         { authorization: user01.token.access },
@@ -143,14 +135,6 @@ describe(__data.text, () => {
       ).then((result) => {
         entity01 = result;
       });
-    });
-
-    after(() => {
-      return entityDelete(
-        { id: entity01.id },
-        { authorization: user01.token.access },
-        database
-      );
     });
 
     after(() => {

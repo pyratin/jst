@@ -3,7 +3,8 @@
 export default {
   DATABASE: {
     USER_COLLECTION_NAME: 'user',
-    POST_COLLECTION_NAME: 'post'
+    POST_COLLECTION_NAME: 'post',
+    PROFILE_COLLECTION_NAME: 'profile'
   },
   JSONWEBTOKEN: {
     EXPIRES_IN: {
