@@ -6,6 +6,7 @@ import { _store } from 'client/store';
 import entityDeleteHandle from './fn/entityDeleteHandle';
 import entityGetHandle from './fn/entityGetHandle';
 import entityCollectionGetHandle from './fn/entityCollectionGetHandle';
+import entityCreateHandle from './fn/entityCreateHandle';
 
 export default (store, { type, result }) => {
   switch (type) {
@@ -48,6 +49,15 @@ export default (store, { type, result }) => {
           entityCollectionGetHandle(
             result,
             draft.user.collection.dictionary[result.info.userId].post.collection
+          );
+      });
+
+    case 'POST_CREATE':
+      return produce(store, (draft) => {
+        draft.user.collection.dictionary[result.userId].post.collection =
+          entityCreateHandle(
+            result,
+            draft.user.collection.dictionary[result.userId].post.collection
           );
       });
 

@@ -104,24 +104,29 @@ describe(__data.text, () => {
         { authorization: user01.token.access },
         data.argument.body,
         database
-      )
-        .then((result) => {
-          const schema = {
-            type: 'object',
-            properties: {
-              id: {
-                type: 'string',
-                pattern: constant.PATTERN.ID
-              },
-              userId: { const: user01.id },
-              ...objectFragmentGet(data.argument.body)
+      ).then((result) => {
+        const schema = {
+          type: 'object',
+          properties: {
+            id: {
+              type: 'string',
+              pattern: constant.PATTERN.ID
             },
-            required: ['id', 'userId', ...Object.keys(data.argument.body)],
-            additionalProperties: false
-          };
+            userId: { const: user01.id },
+            ...objectFragmentGet(data.argument.body),
+            createdAt: { type: 'object' }
+          },
+          required: [
+            'id',
+            'userId',
+            ...Object.keys(data.argument.body),
+            'createdAt'
+          ],
+          additionalProperties: false
+        };
 
-          return assert.equal(ajvInstanceGet().compile(schema)(result), true);
-        });
+        return assert.equal(ajvInstanceGet().compile(schema)(result), true);
+      });
     });
   });
 });

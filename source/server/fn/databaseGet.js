@@ -39,7 +39,7 @@ const profileCollectionInitialize = (database) => {
         id varchar(100) primary key not null,
         userId varchar(100) not null,
         text text not null,
-        constraint profileUserFk foreign key (userId) references user(id)
+        constraint profileUserFk foreign key (userId) references user(id) \
         on delete cascade
       );
     `.trim()
@@ -55,7 +55,8 @@ const postCollectionInitialize = (database) => {
         id varchar(100) primary key not null,
         userId varchar(100) not null,
         text text not null,
-        constraint postUserFk foreign key (userId) references user(id)
+        createdAt datetime not null,
+        constraint postUserFk foreign key (userId) references user(id) \
         on delete cascade
       );
     `.trim()

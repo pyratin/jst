@@ -190,7 +190,7 @@ describe(__data.text, () => {
           type: 'object',
           properties: {
             id: { const: entity01.id },
-            ...objectFragmentGet(data.argument.body)
+            ...objectFragmentGet(data.argument.body),
           },
           required: ['id', ...Object.keys(data.argument.body)],
           additionalProperties: false

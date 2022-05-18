@@ -2,7 +2,7 @@
 
 import constant from 'server/fn/constant';
 
-const hasMoreGet = async (id, userId, collectionName, database) => {
+const hasMoreGet = async (id, userId, orderBy, collectionName, database) => {
   if (!id) {
     return false;
   }
@@ -11,7 +11,7 @@ const hasMoreGet = async (id, userId, collectionName, database) => {
     `
       select count(*) from ${collectionName} \
       where  id>? and \
-      userId=? order by id asc
+      userId=? order by ${orderBy.key} ${orderBy.direction}
     `.trim(),
     [id, userId]
   );
@@ -22,11 +22,16 @@ const hasMoreGet = async (id, userId, collectionName, database) => {
 export default async (userId, limit, offset, database) => {
   const collectionName = constant.DATABASE.POST_COLLECTION_NAME;
 
+  const orderBy = {
+    key: 'createdAt',
+    direction: 'desc'
+  };
+
   const [collection] = await database.execute(
     `
       select * from ${collectionName} \
       where userId=? \
-      order by id asc \
+      order by ${orderBy.key} ${orderBy.direction} \
       limit ${limit} \
       offset ${offset}
     `.trim(),
@@ -40,6 +45,7 @@ export default async (userId, limit, offset, database) => {
       hasMore: await hasMoreGet(
         collection.at(-1)?.id,
         userId,
+        orderBy,
         collectionName,
         database
       )

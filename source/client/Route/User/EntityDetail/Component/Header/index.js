@@ -2,11 +2,30 @@
 
 import React from 'react';
 
+import UserProfile from 'client/Route/Component/UserProfile';
+
 const Header = (props) => {
+  const profileRender = () => {
+    return (
+      <div className='p-2 me-1 border rounded-circle bg-white'>
+        <UserProfile size='md' user={props.entity} />
+      </div>
+    );
+  };
+
+  const emailRender = () => {
+    return (
+      <div className='text-secondary'>
+        <div className='email fs-3 fw-lighter'>{props.entity.email}</div>
+      </div>
+    );
+  };
+
   const _renderFn = () => {
     return (
-      <div className='d-flex justify-content-center p-5 bg-light text-secondary'>
-        <div className='email fs-1 fw-lighter'>{props.entity.email}</div>
+      <div className='d-flex justify-content-center align-items-center p-3 bg-light '>
+        {profileRender()}
+        {emailRender()}
       </div>
     );
   };
