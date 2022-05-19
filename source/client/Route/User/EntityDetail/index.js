@@ -6,9 +6,9 @@ import useEntityGet from 'client/Route/User/fn/useEntityGet';
 import Loading from 'client/Route/Component/Loading';
 import Error from 'client/Route/Component/Error';
 import Header from './Component/Header';
-import PostCreate from 'client/Route/Post/EntityCreate';
+import PostCreate from 'client/Route/Post/Component/EntityCreate';
 import Divider from 'client/Route/Component/Divider';
-import PostCollection from './Component/PostCollection';
+import PostCollection from 'client/Route/Post/Component/EntityCollection';
 
 const EntityDetail = () => {
   const [entity, loading, error] = useEntityGet();

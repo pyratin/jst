@@ -32,6 +32,8 @@ const PostCollection = (props) => {
 
   const [error, errorSet] = useState();
 
+  const [id, idSet] = useState('0cba3fb6-8033-4365-a648-d26e9240692a');
+
   const entityPostCollectionGet = useCallback(
     (offset) => {
       loadingSet(true);
@@ -53,8 +55,20 @@ const PostCollection = (props) => {
   );
 
   useEffect(() => {
-    entityPostCollectionGet(entityPostCollection.length);
-  }, [entityPostCollectionGet, entityPostCollection.length]);
+    entityPostCollectionGet(0);
+  }, [entityPostCollectionGet]);
+
+  const onLoadMoreHandle = () => {
+    return entityPostCollectionGet(entityPostCollection.length);
+  };
+
+  const onEntityUpdateTriggerHandle = (id) => {
+    return idSet(id);
+  };
+
+  const onEntityUpdateCancelHandle = () => {
+    return idSet(null);
+  };
 
   const collectionEmptyRender = () => {
     return (
@@ -63,37 +77,34 @@ const PostCollection = (props) => {
     );
   };
 
-  const onLoadMoreHandle = () => {
-    return !loading && entityPostCollectionGet(entityPostCollection.length);
-  };
-
   const errorRender = () => {
     return error && <Error error={error} />;
   };
 
-  const itemRender = (post, index) => {
+  const itemRender = (entity, index) => {
     return (
       <Fragment key={index}>
-        <Item user={props.user} post={post} />
+        <Item
+          user={props.user}
+          entity={entity}
+          update={entity.id === id}
+          onEntityUpdateTrigger={onEntityUpdateTriggerHandle}
+          onEntityUpdateCancel={onEntityUpdateCancelHandle}
+        />
         <Divider size='md' />
       </Fragment>
     );
   };
-  console.log(entityPostCollection.length)
 
   const _entityPostCollectionRender = () => {
-    return entityPostCollection.map((post, index) => {
-      return itemRender(post, index);
+    return entityPostCollection.map((entity, index) => {
+      return itemRender(entity, index);
     });
   };
 
   const entityPostCollectionRender = () => {
     return (
-      <ReactInfiniteScroller
-        pageStart={0}
-        loadMore={onLoadMoreHandle}
-        hasMore={hasMore}
-      >
+      <ReactInfiniteScroller loadMore={onLoadMoreHandle} hasMore={hasMore}>
         {_entityPostCollectionRender()}
       </ReactInfiniteScroller>
     );
@@ -115,7 +126,7 @@ const PostCollection = (props) => {
       loading && (
         <div
           key='loader'
-          className='loader d-flex justify-content-center align-items-center'
+          className='loader d-flex justify-content-center align-items-center p-5'
         >
           <LoadingInline />
         </div>

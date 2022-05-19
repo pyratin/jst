@@ -54,6 +54,16 @@ const Form = (props) => {
     return props.onSubmit({ text });
   };
 
+  const textGet = () => {
+    switch (props.actionType) {
+      case 'entityCreate':
+        return 'Post';
+
+      case 'entityUpdate':
+        return 'Save';
+    }
+  };
+
   const loadingInlineRender = () => {
     return (
       props.loading && (
@@ -84,7 +94,7 @@ const Form = (props) => {
         <div className='btnGroup d-flex justify-content-end'>
           <button type='submit' className='d-flex btn btn-outline-primary'>
             {loadingInlineRender()}
-            Post
+            {textGet()}
           </button>
         </div>
       </form>

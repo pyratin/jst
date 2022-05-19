@@ -51,6 +51,7 @@ const EntityCreate = (props) => {
     return (
       <div className='flex-grow-1'>
         <Form
+          actionType='entityCreate'
           input={input}
           loading={loading}
           error={error}

@@ -3,6 +3,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import 'bootstrap';
 
 import 'client/style/index.scss';
 import { StoreProvider } from 'client/store';
