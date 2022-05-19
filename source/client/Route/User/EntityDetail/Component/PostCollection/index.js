@@ -15,6 +15,7 @@ import Error from 'client/Route/Component/Error';
 import CollectionEmpty from 'client/Route/Component/CollectionEmpty';
 import LoadingInline from 'client/Route/Component/LoadingInline';
 import Item from './Item';
+import Divider from 'client/Route/Component/Divider';
 
 const PostCollection = (props) => {
   const limit = 1;
@@ -73,10 +74,12 @@ const PostCollection = (props) => {
   const itemRender = (post, index) => {
     return (
       <Fragment key={index}>
-        <Item post={post} />
+        <Item user={props.user} post={post} />
+        <Divider size='md' />
       </Fragment>
     );
   };
+  console.log(entityPostCollection.length)
 
   const _entityPostCollectionRender = () => {
     return entityPostCollection.map((post, index) => {

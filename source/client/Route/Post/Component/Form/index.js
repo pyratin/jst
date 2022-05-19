@@ -1,6 +1,7 @@
 'use strict';
 
-import React, { useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+import autosize from 'autosize';
 
 import useOnInputChange from 'client/Route/fn/useOnInputChange';
 import errorShow from 'client/Route/fn/errorShow';
@@ -8,21 +9,29 @@ import errorClear from 'client/Route/fn/errorClear';
 import LoadingInline from 'client/Route/Component/LoadingInline';
 
 const Form = (props) => {
-  const ref = useRef();
-
   const [text, onTextChangeHandle, textSet] = useOnInputChange(
     props.input.text
   );
 
+  const [submit, submitSet] = useState(false);
+
+  const ref = useRef();
+
   const onSuccessHandle = useCallback(() => {
-    textSet(props.input.text);
-  }, [textSet, props.input.text]);
+    submit && textSet(props.input.text);
+
+    return submitSet(false);
+  }, [submit, textSet, props.input.text]);
 
   const onErrorHandle = useCallback(() => {
     return props.error
       ? errorShow(props.error, ref.current)
       : errorClear(ref.current);
   }, [props.error]);
+
+  const renderInitialize = useCallback(() => {
+    autosize($('textarea'));
+  }, []);
 
   useEffect(() => {
     onSuccessHandle();
@@ -32,9 +41,15 @@ const Form = (props) => {
     onErrorHandle();
   }, [onErrorHandle]);
 
+  useEffect(() => {
+    renderInitialize();
+  }, [renderInitialize]);
+
   const onSubmitHandle = (event) => {
     event.preventDefault();
     event.stopPropagation();
+
+    submitSet(true);
 
     return props.onSubmit({ text });
   };
