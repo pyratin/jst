@@ -191,8 +191,9 @@ describe(__data.text, () => {
           properties: {
             id: { const: entity01.id },
             ...objectFragmentGet(data.argument.body),
+            updatedAt: { type: 'object' }
           },
-          required: ['id', ...Object.keys(data.argument.body)],
+          required: ['id', ...Object.keys(data.argument.body), 'updatedAt'],
           additionalProperties: false
         };
 

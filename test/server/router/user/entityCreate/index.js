@@ -139,6 +139,8 @@ describe(__data.text, () => {
               password: {
                 not: { const: data.argument.body.password }
               },
+              createdAt: { type: 'object' },
+              updatedAt: { type: 'object' },
               profile: { type: 'string' },
               token: {
                 type: 'object',
@@ -150,7 +152,13 @@ describe(__data.text, () => {
                 additionalProperties: false
               }
             },
-            required: ['id', ...Object.keys(data.argument.body), 'token'],
+            required: [
+              'id',
+              ...Object.keys(data.argument.body),
+              'createdAt',
+              'updatedAt',
+              'token'
+            ],
             additionalProperties: false
           };
 

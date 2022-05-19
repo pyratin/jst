@@ -24,7 +24,9 @@ const userCollectionInitialize = (database) => {
       create table if not exists ${collectionName} (
         id varchar(100) primary key not null,
         email varchar(100) unique not null,
-        password varchar(100) not null
+        password varchar(100) not null,
+        createdAt datetime not null,
+        updatedAt datetime not null
       );
     `.trim()
   );
@@ -39,6 +41,8 @@ const profileCollectionInitialize = (database) => {
         id varchar(100) primary key not null,
         userId varchar(100) not null,
         text text not null,
+        createdAt datetime not null,
+        updatedAt datetime not null,
         constraint profileUserFk foreign key (userId) references user(id) \
         on delete cascade
       );
@@ -56,6 +60,7 @@ const postCollectionInitialize = (database) => {
         userId varchar(100) not null,
         text text not null,
         createdAt datetime not null,
+        updatedAt datetime not null,
         constraint postUserFk foreign key (userId) references user(id) \
         on delete cascade
       );

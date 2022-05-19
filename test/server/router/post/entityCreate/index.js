@@ -114,13 +114,15 @@ describe(__data.text, () => {
             },
             userId: { const: user01.id },
             ...objectFragmentGet(data.argument.body),
-            createdAt: { type: 'object' }
+            createdAt: { type: 'object' },
+            updatedAt: { type: 'object' }
           },
           required: [
             'id',
             'userId',
             ...Object.keys(data.argument.body),
-            'createdAt'
+            'createdAt',
+            'updatedAt'
           ],
           additionalProperties: false
         };
