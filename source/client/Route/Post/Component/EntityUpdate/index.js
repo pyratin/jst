@@ -8,6 +8,7 @@ import Modal from 'client/Route/Component/Modal';
 
 const EntityUpdate = (props) => {
   const onSubmitHandle = (input) => {
+    // eslint-disable-next-line no-console
     console.log(input);
   };
 
