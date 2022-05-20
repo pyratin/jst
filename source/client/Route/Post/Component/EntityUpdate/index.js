@@ -2,8 +2,8 @@
 
 import React from 'react';
 
-import Header from 'client/Route/Post/Component/Header';
-import Form from 'client/Route/Post/Component/Form';
+import Header from 'client/Route/Post/Component/Shared/Header';
+import Form from 'client/Route/Post/Component/Shared/Form';
 import Modal from 'client/Route/Component/Modal';
 
 const EntityUpdate = (props) => {

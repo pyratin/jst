@@ -37,20 +37,20 @@ const Header = (props) => {
     );
   };
 
-  const detailRender = () => {
+  const _detailRender = () => {
     return (
-      <div className='flex-grow-1 small'>
+      <div className='small'>
         {userEmailRender()}
         {entityCreatedAtRender()}
       </div>
     );
   };
 
-  const _renderFn = () => {
+  const detailRender = () => {
     return (
-      <div className='d-flex pb-3'>
+      <div className='d-flex align-items-center'>
         {userProfileRender()}
-        {detailRender()}
+        {_detailRender()}
       </div>
     );
   };
@@ -67,13 +67,17 @@ const Header = (props) => {
     );
   };
 
-  const renderFn = () => {
+  const _renderFn = () => {
     return (
-      <div className='d-flex justify-content-between'>
-        {_renderFn()}
+      <div className='d-flex justify-content-between mb-3'>
+        {detailRender()}
         {controlRender()}
       </div>
     );
+  };
+
+  const renderFn = () => {
+    return <div>{_renderFn()}</div>;
   };
 
   return <div className='Header'>{renderFn()}</div>;

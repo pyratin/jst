@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import Header from 'client/Route/Post/Component/Header';
+import Header from 'client/Route/Post/Component/Shared/Header';
 
 const EntityDisplay = (props) => {
   const headerRender = () => {
