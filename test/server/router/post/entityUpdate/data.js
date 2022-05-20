@@ -154,7 +154,7 @@ export default {
       ],
       it: [
         {
-          text: 'result: { ...body }',
+          text: 'result: { ...entity, ...body }',
           argument: {
             body: {
               text: 'TEXT-UPDATED'

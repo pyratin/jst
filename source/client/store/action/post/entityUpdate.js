@@ -1,6 +1,6 @@
 'use strict';
 
-export default (id) => {
+export default (id, body) => {
   return (_dispatch, Authorization) => {
     return window
       .fetch(`/post/${id}`, {
@@ -8,7 +8,8 @@ export default (id) => {
         headers: {
           Authorization,
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(body)
       })
       .then((result) => {
         return result.json();

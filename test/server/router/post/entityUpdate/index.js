@@ -190,6 +190,7 @@ describe(__data.text, () => {
           type: 'object',
           properties: {
             id: { const: entity01.id },
+            ...objectFragmentGet(entity01),
             ...objectFragmentGet(data.argument.body),
             updatedAt: { type: 'object' }
           },

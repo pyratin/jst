@@ -17,10 +17,10 @@ const Form = (props) => {
 
   const ref = useRef();
 
-  const onSuccessHandle = useCallback(() => {
-    submit && textSet(props.input.text);
+  const onEntityCreateSuccessHandle = useCallback(() => {
+    props.actionType === 'entityCreate' && submit && textSet(props.input.text);
 
-    return submitSet(false);
+    submitSet(false);
   }, [submit, textSet, props.input.text]);
 
   const onErrorHandle = useCallback(() => {
@@ -34,8 +34,8 @@ const Form = (props) => {
   }, []);
 
   useEffect(() => {
-    onSuccessHandle();
-  }, [onSuccessHandle]);
+    onEntityCreateSuccessHandle();
+  }, [onEntityCreateSuccessHandle]);
 
   useEffect(() => {
     onErrorHandle();

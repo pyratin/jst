@@ -32,7 +32,7 @@ const PostCollection = (props) => {
 
   const [error, errorSet] = useState();
 
-  const [id, idSet] = useState('0cba3fb6-8033-4365-a648-d26e9240692a');
+  const [id, idSet] = useState();
 
   const entityPostCollectionGet = useCallback(
     (offset) => {

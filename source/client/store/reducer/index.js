@@ -7,6 +7,7 @@ import entityDeleteHandle from './fn/entityDeleteHandle';
 import entityGetHandle from './fn/entityGetHandle';
 import entityCollectionGetHandle from './fn/entityCollectionGetHandle';
 import entityCreateHandle from './fn/entityCreateHandle';
+import entityUpdateHandle from './fn/entityUpdateHandle';
 
 export default (store, { type, result }) => {
   switch (type) {
@@ -56,6 +57,15 @@ export default (store, { type, result }) => {
       return produce(store, (draft) => {
         draft.user.collection.dictionary[result.userId].post.collection =
           entityCreateHandle(
+            result,
+            draft.user.collection.dictionary[result.userId].post.collection
+          );
+      });
+
+    case 'POST_UPDATE':
+      return produce(store, (draft) => {
+        draft.user.collection.dictionary[result.userId].post.collection =
+          entityUpdateHandle(
             result,
             draft.user.collection.dictionary[result.userId].post.collection
           );
