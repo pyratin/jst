@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Store } from 'client/store';
 import entityAuthenticateAction from 'client/store/action/user/entityAuthenticate';
-import AuthorizationNavigation from 'client/Route/User/Shared/AuthorizationNavigation';
-import AuthorizationForm from 'client/Route/User/Shared/AuthorizationForm';
+import AuthorizationNavigation from 'client/Route/User/Shared/Navigation';
+import AuthorizationForm from 'client/Route/User/Shared/Form';
 
 const EntityAuthenticate = () => {
   const { dispatch } = useContext(Store);

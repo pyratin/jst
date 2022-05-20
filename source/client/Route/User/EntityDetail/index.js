@@ -3,11 +3,11 @@
 import React from 'react';
 
 import useEntityGet from 'client/Route/User/fn/useEntityGet';
-import Loading from 'client/Route/Component/Loading';
-import Error from 'client/Route/Component/Error';
+import Loading from 'client/Route/Shared/Loading';
+import Error from 'client/Route/Shared/Error';
 import Header from './Component/Header';
 import PostCreate from 'client/Route/Post/Component/EntityCreate';
-import Divider from 'client/Route/Component/Divider';
+import Divider from 'client/Route/Shared/Divider';
 import PostCollection from './Component/PostCollection';
 
 const EntityDetail = () => {

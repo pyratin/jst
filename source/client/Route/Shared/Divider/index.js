@@ -11,11 +11,11 @@ const Divider = (props) => {
   };
 
   const _renderFn = () => {
-    return <div className={`bg-light border-top ${pyGet()}`}></div>
+    return <div className={`bg-light border-top ${pyGet()}`}></div>;
   };
 
   const renderFn = () => {
-    return <div>{_renderFn()}</div>
+    return <div>{_renderFn()}</div>;
   };
 
   return <div className='Divider'>{renderFn()}</div>;

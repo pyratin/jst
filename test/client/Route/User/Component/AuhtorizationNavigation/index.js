@@ -4,7 +4,7 @@ import React from 'react';
 import { mount } from '@cypress/react';
 
 import Wrapper from 'test/client/Component/Wrapper';
-import AuthorizationNavigation from 'client/Route/User/Component/AuthorizationNavigation';
+import AuthorizationNavigation from 'client/Route/User/Shared/Navigation';
 
 describe('AuthorizationNavigation', () => {
   it('location.pathname: /User/Authenticate :: a.Signin.active', () => {

@@ -3,7 +3,7 @@
 import React from 'react';
 import { DateTime } from 'luxon';
 
-import UserProfile from 'client/Route/Component/UserProfile';
+import UserProfile from 'client/Route/Shared/UserProfile';
 import Control from './Control';
 
 const Header = (props) => {

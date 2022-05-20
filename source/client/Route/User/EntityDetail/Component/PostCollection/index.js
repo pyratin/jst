@@ -11,11 +11,11 @@ import ReactInfiniteScroller from 'react-infinite-scroller';
 
 import { Store } from 'client/store';
 import entityPostCollectionGetAction from 'client/store/action/user/entityPostCollectionGet';
-import Error from 'client/Route/Component/Error';
-import CollectionEmpty from 'client/Route/Component/CollectionEmpty';
-import LoadingInline from 'client/Route/Component/LoadingInline';
+import Error from 'client/Route/Shared/Error';
+import CollectionEmpty from 'client/Route/Shared/CollectionEmpty';
+import LoadingInline from 'client/Route/Shared/LoadingInline';
 import Item from './Item';
-import Divider from 'client/Route/Component/Divider';
+import Divider from 'client/Route/Shared/Divider';
 
 const PostCollection = (props) => {
   const limit = 1;

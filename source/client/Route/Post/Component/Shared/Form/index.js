@@ -6,7 +6,7 @@ import autosize from 'autosize';
 import useOnInputChange from 'client/Route/fn/useOnInputChange';
 import errorShow from 'client/Route/fn/errorShow';
 import errorClear from 'client/Route/fn/errorClear';
-import LoadingInline from 'client/Route/Component/LoadingInline';
+import LoadingInline from 'client/Route/Shared/LoadingInline';
 
 const Form = (props) => {
   const [text, onTextChangeHandle, textSet] = useOnInputChange(
@@ -21,7 +21,7 @@ const Form = (props) => {
     props.actionType === 'entityCreate' && submit && textSet(props.input.text);
 
     submitSet(false);
-  }, [submit, textSet, props.input.text]);
+  }, [props.actionType, submit, textSet, props.input.text]);
 
   const onErrorHandle = useCallback(() => {
     return props.error

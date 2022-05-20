@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react';
 
 import { Store } from 'client/store';
 import entityCreateAction from 'client/store/action/post/entityCreate';
-import UserProfile from 'client/Route/Component/UserProfile';
+import UserProfile from 'client/Route/Shared/UserProfile';
 import Form from 'client/Route/Post/Component/Shared/Form';
 
 const EntityCreate = (props) => {

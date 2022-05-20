@@ -6,7 +6,7 @@ import { Store } from 'client/store';
 import entityUpdateAction from 'client/store/action/post/entityUpdate';
 import Header from 'client/Route/Post/Component/Shared/Header';
 import Form from 'client/Route/Post/Component/Shared/Form';
-import Modal from 'client/Route/Component/Modal';
+import Modal from 'client/Route/Shared/Modal';
 
 const EntityUpdate = (props) => {
   const input = { text: props.entity.text };

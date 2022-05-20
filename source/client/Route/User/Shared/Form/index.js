@@ -5,7 +5,7 @@ import React, { useRef, useCallback, useEffect } from 'react';
 import useOnInputChange from 'client/Route/fn/useOnInputChange';
 import errorShow from 'client/Route/fn/errorShow';
 import errorClear from 'client/Route/fn/errorClear';
-import LoadingInline from 'client/Route/Component/LoadingInline';
+import LoadingInline from 'client/Route/Shared/LoadingInline';
 
 const AuthorizationForm = (props) => {
   const ref = useRef();

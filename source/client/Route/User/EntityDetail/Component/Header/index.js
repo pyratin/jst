@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import UserProfile from 'client/Route/Component/UserProfile';
+import UserProfile from 'client/Route/Shared/UserProfile';
 
 const Header = (props) => {
   const profileRender = () => {
