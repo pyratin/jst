@@ -32,7 +32,7 @@ const PostCollection = (props) => {
 
   const [error, errorSet] = useState();
 
-  const [id, idSet] = useState();
+  const [action, actionSet] = /** @type {any} */ (useState());
 
   const entityPostCollectionGet = useCallback(
     (offset) => {
@@ -63,11 +63,29 @@ const PostCollection = (props) => {
   };
 
   const onEntityUpdateTriggerHandle = (id) => {
-    return idSet(id);
+    return actionSet({
+      type: 'entityUpdate',
+      id
+    });
+  };
+
+  const actionTypeGet = (id) => {
+    return id === action?.id && action.type;
   };
 
   const onEntityUpdateCancelHandle = () => {
-    return idSet(null);
+    return actionSet(null);
+  };
+
+  const onEntityDeleteTriggerHandle = (id) => {
+    return actionSet({
+      type: 'entityDelete',
+      id
+    });
+  };
+
+  const onEntityDeleteCancelHandle = () => {
+    return actionSet(null);
   };
 
   const collectionEmptyRender = () => {
@@ -85,11 +103,14 @@ const PostCollection = (props) => {
     return (
       <Fragment key={index}>
         <Item
-          user={props.user}
+          actionType={actionTypeGet(entity.id)}
+          userAuthorization={props.userAuthorization}
           entity={entity}
-          update={entity.id === id}
+          user={props.user}
           onEntityUpdateTrigger={onEntityUpdateTriggerHandle}
           onEntityUpdateCancel={onEntityUpdateCancelHandle}
+          onEntityDeleteTrigger={onEntityDeleteTriggerHandle}
+          onEntityDeleteCancel={onEntityDeleteCancelHandle}
         />
         <Divider size='md' />
       </Fragment>

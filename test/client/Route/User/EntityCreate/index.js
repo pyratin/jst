@@ -3,7 +3,7 @@
 import React from 'react';
 import { mount } from '@cypress/react';
 
-import Wrapper from 'test/client/Component/Wrapper';
+import Wrapper from 'test/client/Shared/Wrapper';
 import EntityCreate from 'client/Route/User/EntityCreate';
 
 describe('EntityCreate', () => {

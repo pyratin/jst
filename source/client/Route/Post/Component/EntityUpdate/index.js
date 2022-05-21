@@ -44,6 +44,7 @@ const EntityUpdate = (props) => {
     return (
       <Header
         actionType={props.actionType}
+        userAuthorization={props.userAuthorization}
         user={props.user}
         entity={props.entity}
       />
@@ -53,7 +54,7 @@ const EntityUpdate = (props) => {
   const formRender = () => {
     return (
       <Form
-        actionType='entityUpdate'
+        actionType={props.actionType}
         input={input}
         loading={loading}
         error={error}

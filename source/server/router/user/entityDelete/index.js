@@ -25,16 +25,23 @@ export const validateFn = async (params, headers, database) => {
   } finally {
     // eslint-disable-next-line no-empty
   }
+
+  return { entity };
 };
 
 export default async (params, headers, database) => {
+  let entity;
+
   try {
-    await validateFn(params, headers, database);
+    ({ entity } = await validateFn(params, headers, database));
   } catch (error) {
     return error;
   }
 
   const result = await entityDelete(params.id, database);
 
-  return result;
+  return {
+    ...entity,
+    ...result
+  };
 };

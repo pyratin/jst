@@ -151,7 +151,7 @@ describe(__data.text, () => {
         { authorization: user01.token.access },
         database
       ).then((result) => {
-        return assert.deepEqual(result, { id: entity01.id });
+        return assert.deepEqual(result, entity01);
       });
     });
   });

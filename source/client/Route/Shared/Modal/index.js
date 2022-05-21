@@ -4,7 +4,7 @@ import React, { useRef, useCallback, useEffect } from 'react';
 import { Modal as BootstrapModal } from 'bootstrap';
 
 const Modal = (_props) => {
-  const {onModalClose, ...props} = _props;
+  const { onModalClose, ...props } = _props;
 
   const ref = /** @type {any} */ (useRef());
 
@@ -13,7 +13,7 @@ const Modal = (_props) => {
   }, [onModalClose]);
 
   const renderInitialize = useCallback(() => {
-    new BootstrapModal(ref.current).show();
+    BootstrapModal.getOrCreateInstance(ref.current).toggle();
   }, []);
 
   useEffect(() => {
@@ -24,8 +24,6 @@ const Modal = (_props) => {
     renderInitialize();
 
     return () => {
-      $('.modal-backdrop').remove();
-
       return refCurrent.removeEventListener(
         'hide.bs.modal',
         onModalCloseHandle
@@ -43,9 +41,7 @@ const Modal = (_props) => {
               <button className='btn-close' data-bs-dismiss='modal'></button>
             </div>
 
-            <div className='modal-body'>
-              {props.children}
-            </div>
+            <div className='modal-body'>{props.children}</div>
           </div>
         </div>
       </div>

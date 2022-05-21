@@ -8,9 +8,12 @@ const EntityDisplay = (props) => {
   const headerRender = () => {
     return (
       <Header
-        user={props.user}
+        actionType={props.actionType}
+        userAuthorization={props.userAuthorization}
         entity={props.entity}
+        user={props.user}
         onEntityUpdateTrigger={props.onEntityUpdateTrigger}
+        onEntityDeleteTrigger={props.onEntityDeleteTrigger}
       />
     );
   };

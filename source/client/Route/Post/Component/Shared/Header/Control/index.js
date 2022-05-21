@@ -2,14 +2,24 @@
 
 import React from 'react';
 
-import UpdateTrigger from './UpdateTrigger';
+import EntityUpdateTrigger from './EntityUpdateTrigger';
+import EntityDeleteTrigger from './EntityDeleteTrigger';
 
 const Control = (props) => {
-  const updateTriggerRender = () => {
+  const entityUpdateTriggerRender = () => {
     return (
-      <UpdateTrigger
+      <EntityUpdateTrigger
         entity={props.entity}
         onEntityUpdateTrigger={props.onEntityUpdateTrigger}
+      />
+    );
+  };
+
+  const entityDeleteTriggerRender = () => {
+    return (
+      <EntityDeleteTrigger
+        entity={props.entity}
+        onEntityDeleteTrigger={props.onEntityDeleteTrigger}
       />
     );
   };
@@ -21,7 +31,13 @@ const Control = (props) => {
           <i className='fa fa-ellipsis'></i>
         </button>
 
-        <ul className='dropdown-menu'>{updateTriggerRender()}</ul>
+        <ul className='dropdown-menu'>
+          {entityUpdateTriggerRender()}
+
+          <div className='dropdown-divider'></div>
+
+          {entityDeleteTriggerRender()}
+        </ul>
       </div>
     );
   };

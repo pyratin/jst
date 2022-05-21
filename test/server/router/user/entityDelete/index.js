@@ -97,7 +97,9 @@ describe(__data.text, () => {
         { authorization: entity01.token.access },
         database
       ).then((result) => {
-        return assert.deepEqual(result, { id: entity01.id });
+        const { token, profile, ..._entity01 } = entity01;
+
+        return assert.deepEqual(result, _entity01);
       });
     });
   });

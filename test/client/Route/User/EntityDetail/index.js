@@ -4,7 +4,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { mount } from '@cypress/react';
 
-import Wrapper from 'test/client/Component/Wrapper';
+import Wrapper from 'test/client/Shared/Wrapper';
 import EntityDetail from 'client/Route/User/EntityDetail';
 
 describe('EntityDetail', () => {

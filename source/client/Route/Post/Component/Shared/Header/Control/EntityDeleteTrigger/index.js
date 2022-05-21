@@ -2,18 +2,18 @@
 
 import React from 'react';
 
-const UpdateTrigger = (props) => {
+const EntityDeleteTrigger = (props) => {
   const onClickHandle = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
-    return props.onEntityUpdateTrigger(props.entity.id);
+    return props.onEntityDeleteTrigger(props.entity.id);
   };
 
   const iconRender = () => {
     return (
       <div className='me-1'>
-        <i className='fa fa-edit'></i>
+        <i className='fa fa-square-xmark'></i>
       </div>
     );
   };
@@ -23,7 +23,7 @@ const UpdateTrigger = (props) => {
       <li>
         <a href='#' className='d-flex dropdown-item' onClick={onClickHandle}>
           {iconRender()}
-          Update
+          Delete
         </a>
       </li>
     );
@@ -33,7 +33,7 @@ const UpdateTrigger = (props) => {
     return <div>{_renderFn()}</div>;
   };
 
-  return <div className='UpdateTrigger'>{renderFn()}</div>;
+  return <div className='EntityDeleteTrigger'>{renderFn()}</div>;
 };
 
-export default UpdateTrigger;
+export default EntityDeleteTrigger;

@@ -3,10 +3,10 @@
 import React from 'react';
 import { mount } from '@cypress/react';
 
-import Wrapper from 'test/client/Component/Wrapper';
+import Wrapper from 'test/client/Shared/Wrapper';
 import AuthorizationForm from 'client/Route/User/Shared/Form';
 
-describe('AuthorizationForm', () => {
+describe('Form', () => {
   it('props.actionType: entityAuthenticate :: [type=submit].text', () => {
     mount(
       <Wrapper>

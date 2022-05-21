@@ -1,6 +1,7 @@
 'use strict';
 
 import idValidate from 'server/router/fn/idValidate';
+import entityExistsValidate from 'server/router/user/fn/entityExistsValidate';
 import userAuthenticationValidate from 'server/router/fn/userAuthenticationValidate';
 import queryValidate from './fn/queryValidate';
 import entityPostCollectionGet from 'server/router/user/fn/entityPostCollectionGet';
@@ -15,7 +16,13 @@ export const validateFn = async (params, headers, query, database) => {
   }
 
   try {
-    entity = await userAuthenticationValidate(headers.authorization, database);
+    entity = await entityExistsValidate(params.id, database);
+  } finally {
+    // eslint-disable-next-line no-empty
+  }
+
+  try {
+    await userAuthenticationValidate(headers.authorization, database);
   } finally {
     // eslint-disable-next-line no-empty
   }

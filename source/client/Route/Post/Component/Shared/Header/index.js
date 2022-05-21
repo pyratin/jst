@@ -8,8 +8,9 @@ import Control from './Control';
 
 const Header = (props) => {
   const controlRenderFlagGet = () => {
-    switch (props.actionType) {
-      case 'entityUpdate':
+    switch (true) {
+      case props.actionType === 'entityUpdate':
+      case !props.userAuthorization:
         return false;
 
       default:
@@ -59,9 +60,9 @@ const Header = (props) => {
     return (
       controlRenderFlagGet() && (
         <Control
-          user={props.user}
           entity={props.entity}
           onEntityUpdateTrigger={props.onEntityUpdateTrigger}
+          onEntityDeleteTrigger={props.onEntityDeleteTrigger}
         />
       )
     );

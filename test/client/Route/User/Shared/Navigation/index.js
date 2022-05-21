@@ -3,10 +3,10 @@
 import React from 'react';
 import { mount } from '@cypress/react';
 
-import Wrapper from 'test/client/Component/Wrapper';
+import Wrapper from 'test/client/Shared/Wrapper';
 import AuthorizationNavigation from 'client/Route/User/Shared/Navigation';
 
-describe('AuthorizationNavigation', () => {
+describe('Navigation', () => {
   it('location.pathname: /User/Authenticate :: a.Signin.active', () => {
     history.pushState(null, null, '/User/Authenticate');
 

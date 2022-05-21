@@ -71,6 +71,15 @@ export default (store, { type, result }) => {
           );
       });
 
+    case 'POST_DELETE':
+      return produce(store, (draft) => {
+        draft.user.collection.dictionary[result.userId].post.collection =
+          entityDeleteHandle(
+            result,
+            draft.user.collection.dictionary[result.userId].post.collection
+          );
+      });
+
     default:
       return store;
   }

@@ -1,7 +1,9 @@
 'use strict';
 
-import React from 'react';
+import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 
+import { Store } from 'client/store';
 import useEntityGet from 'client/Route/User/fn/useEntityGet';
 import Loading from 'client/Route/Shared/Loading';
 import Error from 'client/Route/Shared/Error';
@@ -11,6 +13,10 @@ import Divider from 'client/Route/Shared/Divider';
 import PostCollection from './Component/PostCollection';
 
 const EntityDetail = () => {
+  const { store } = useContext(Store);
+
+  const params = useParams();
+
   const [entity, loading, error] = useEntityGet();
 
   const loadingRender = () => {
@@ -34,7 +40,12 @@ const EntityDetail = () => {
   };
 
   const postCollectionRender = () => {
-    return <PostCollection user={entity} />;
+    return (
+      <PostCollection
+        userAuthorization={store.user.authorization.id === params.id}
+        user={entity}
+      />
+    );
   };
 
   const _renderFn = () => {

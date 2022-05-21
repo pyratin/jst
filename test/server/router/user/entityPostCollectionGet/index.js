@@ -58,6 +58,7 @@ describe(__data.text, () => {
       return validateFn(
         data.argument.params,
         data.argument.headers,
+        null,
         database
       ).catch((error) => {
         return assert.deepEqual(error, data.error);
@@ -69,8 +70,8 @@ describe(__data.text, () => {
 
       return validateFn(
         { id: entity01.id },
-        { authorization: entity01.token.access },
-        data.argument.query,
+        data.argument.headers,
+        null,
         database
       ).catch((error) => {
         return assert.deepEqual(error, data.error);
